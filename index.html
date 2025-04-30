@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
+
+<!-- PWA মেটা ট্যাগ -->
+<meta name="theme-color" content="#065f46">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Overclock">
+<link rel="manifest" href="/manifest.json">
+
+<!-- iOS আইকন -->
+<link rel="apple-touch-icon" href="icons/icon-152x152.png">
+<link rel="apple-touch-startup-image" href="icons/icon-512x512.png">
+<!-- PWA মেটা ট্যাগ শেষ-->
+
     <base target="_top">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Overclock</title>
      <!-- ফেভিকন সেট করার জন্য নিচের লাইনটি যোগ করো -->
-  <link rel="icon" type="image/png" href="schedule.png" />
+  <link rel="icon" type="/home/astronaut/Music/" href="schedule.png" />
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
@@ -380,6 +393,26 @@
     </style>
   </head>
   <body>
+
+
+<script>
+  // Service Worker রেজিস্ট্রেশন
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(registration => {
+          console.log('ServiceWorker registration successful');
+        })
+        .catch(err => {
+          console.log('ServiceWorker registration failed: ', err);
+        });
+    });
+  }
+</script>
+
+
+
+
     <div id="root" class="px-4 py-6"></div>
 
    <!-- Study Form Popup -->
@@ -389,7 +422,7 @@
       ×
     </button>
     <div class="bengali-form">
-      <h2 class="text-4xl font-bold text-center mb-6 animate-bounce" style="animation-iteration-count: infinite; animation-duration: 3s;">কি খবর?</h2>
+      <h2 class="text-4xl font-bold text-center mb-6 animate-bounce" style="animation-iteration-count: infinite; animation-duration: 3s;">কী খবর?</h2>
       <form id="studyForm">
         <div class="form-group">
           <label for="name" class="required">নাম:</label>
