@@ -28,6 +28,55 @@
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
+    /* লোডিং স্ক্রিন স্টাইল */
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #022c22, #000000);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    
+    .loading-text {
+      color: #10b981;
+      font-size: 3rem;
+      font-weight: bold;
+      font-family: 'Hind Siliguri', sans-serif;
+      animation: gentleBounce 2s ease-in-out;
+      opacity: 0;
+    }
+    
+@keyframes gentleBounce {
+  0% { opacity: 0; transform: translateY(20px); }
+  30% { opacity: 1; transform: translateY(0); }
+  70% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-20px); }
+}
+
+/* মোবাইল ডিভাইসে টেবিল হেডার স্টাইল */
+@media (max-width: 768px) {
+  th {
+    white-space: nowrap; /* টেক্সট যেন লাইন ব্রেক না হয় */
+    padding: 8px 12px; /* প্যাডিং সামান্য কমিয়ে দিন */
+  }
+  
+  th i.fas {
+    display: inline-block; /* আইকনকে ইনলাইন ব্লক হিসেবে রাখুন */
+    margin-right: 4px; /* টেক্সটের সাথে ফাঁকা স্থান কমিয়ে দিন */
+    vertical-align: middle; /* ভার্টিক্যাল অ্যালাইনমেন্ট */
+  }
+  
+  th span {
+    display: inline-block; /* টেক্সটকেও ইনলাইন ব্লক করুন */
+    vertical-align: middle; /* ভার্টিক্যাল অ্যালাইনমেন্ট */
+  }
+}
+
 
 /* মোবাইল অপ্টিমাইজেশন */
 @media (max-width: 640px) {
@@ -560,7 +609,19 @@ tr {
     </style>
   </head>
   <body>
+ <!-- লোডিং স্ক্রিন -->
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loading-text">কি গো?</div>
+  </div>
     <script>
+ // 2 সেকেন্ড পর লোডিং স্ক্রিন হাইড করবে
+    setTimeout(() => {
+      document.getElementById('loadingScreen').style.opacity = '0';
+      setTimeout(() => {
+        document.getElementById('loadingScreen').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+      }, 500);
+    }, 2000);
       // Service Worker রেজিস্ট্রেশন
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
@@ -759,17 +820,22 @@ document.getElementById('studyForm').addEventListener('submit', function(e) {
 
 
  <script type="text/babel">
-// লেভেল ডাটা পার্স করার ফাংশন
+// পুরানো ফাংশন সরিয়ে দিন
+// const parseLevelData = (levelStr) => {
+//   if (!levelStr) return { level: 1, progress: 0 };
+//   
+//   const parts = levelStr.split(' - ');
+//   if (parts.length !== 2) return { level: 1, progress: 0 };
+//   
+//   const level = parseInt(parts[0].replace('Level ', '')) || 1;
+//   const progress = parseInt(parts[1].replace('%', '')) || 0;
+//   
+//   return { level, progress };
+// };
+
+// নতুন ফাংশন যেটা সরাসরি ম্যাসেজ রিটার্ন করবে
 const parseLevelData = (levelStr) => {
-  if (!levelStr) return { level: 1, progress: 0 };
-  
-  const parts = levelStr.split(' - ');
-  if (parts.length !== 2) return { level: 1, progress: 0 };
-  
-  const level = parseInt(parts[0].replace('Level ', '')) || 1;
-  const progress = parseInt(parts[1].replace('%', '')) || 0;
-  
-  return { level, progress };
+  return levelStr || "Level 1 - 0%"; // ডিফল্ট ভ্যালু
 };
 
 const { useState, useEffect } = React;
@@ -806,7 +872,7 @@ const StreakDashboard = () => {
   const targetDate = new Date("2025-06-25");
   const today = new Date();
   const daysLeft = Math.max(0, Math.ceil((targetDate - today) / (1000 * 60 * 60 * 24)));
-  const motivation = "ﷺ নিশ্চয়ই কষ্টের সাথেই রয়েছে স্বস্তি। (সুরা ইনশিরাহ-০৬)";
+  const motivation = "ﷺ “প্রতিটি জ্ঞানীর উপর আরেকজন জ্ঞানী রয়েছেন।” (সূরা ইউসুফ: ৭৬)";
 
   return (
     <div className="max-w-7xl mx-auto space-y-8 pt-0">
@@ -832,134 +898,109 @@ const StreakDashboard = () => {
       ) : (
         <div className="overflow-x-auto rounded-xl border border-green-800/50 shadow-lg mx-2 md:mx-4 bg-gradient-to-br from-green-950/80 to-green-900/30">
           <table className="min-w-full divide-y divide-green-800/50">
-            <thead className="bg-gradient-to-r from-green-900/80 to-green-800/80">
-              <tr>
-                <th scope="col" className="px-4 py-3 text-left text-xs font-semibold text-emerald-300 uppercase tracking-wider">
-                  <i className="fas fa-trophy mr-1"></i> র‍্যাঙ্ক
-                </th>
-                <th scope="col" className="px-4 py-3 text-left text-xs font-semibold text-emerald-300 uppercase tracking-wider">
-                  <i className="fas fa-user mr-1"></i> নাম
-                </th>
-                <th scope="col" className="px-4 py-3 text-left text-xs font-semibold text-emerald-300 uppercase tracking-wider">
-                  <i className="fas fa-sun mr-1"></i> আজকে
-                </th>
-                <th scope="col" className="px-4 py-3 text-left text-xs font-semibold text-emerald-300 uppercase tracking-wider">
-                  <i className="fas fa-calendar-week mr-1"></i> সপ্তাহ
-                </th>
-                <th scope="col" className="px-4 py-3 text-left text-xs font-semibold text-emerald-300 uppercase tracking-wider">
-                  <i className="fas fa-chart-line mr-1"></i> মোট
-                </th>
-                <th scope="col" className="px-4 py-3 text-left text-xs font-semibold text-emerald-300 uppercase tracking-wider">
-                  <i className="fas fa-fire mr-1"></i> স্ট্রিক
-                </th>
-                <th scope="col" className="px-4 py-3 text-left text-xs font-semibold text-emerald-300 uppercase tracking-wider">
-                  <i className="fas fa-medal mr-1"></i> লেভেল
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-green-800/30">
-              {streakData.filter(user => user.Name && user.Name.trim() !== "").map((user, index) => (
-                <tr 
-                  key={index} 
-                  className={`hover:bg-green-900/20 transition-colors ${index % 2 === 0 ? 'bg-green-950/30' : 'bg-green-900/10'}`}
-                  style={{ animationDelay: `${index * 0.05}s` }}
-                >
-                  {/* Rank Column */}
-                  <td className="px-4 py-4 whitespace-nowrap text-center">
-                    <div className={`flex items-center justify-center ${index < 3 ? 'scale-110' : ''}`}>
-                      <div className={`h-8 w-8 rounded-full flex items-center justify-center shadow-md
-                        ${index === 0 ? 'bg-gradient-to-br from-yellow-400 to-yellow-600' : 
-                          index === 1 ? 'bg-gradient-to-br from-gray-300 to-gray-500' : 
-                          index === 2 ? 'bg-gradient-to-br from-amber-600 to-amber-800' : 
-                          'bg-gradient-to-br from-green-800 to-green-900'}`}>
-                        <span className={`font-bold ${index < 3 ? 'text-white' : 'text-emerald-300'}`}>
-                          {index + 1}
-                        </span>
-                      </div>
-                    </div>
-                  </td>
+         <thead className="bg-gradient-to-r from-green-900/80 to-green-800/80">
+  <tr>
+    <th scope="col" className="px-4 py-3 text-left text-xs font-semibold text-emerald-300 uppercase tracking-wider">
+      <i className="fas fa-trophy mr-1"></i>
+      <span>র‍্যাঙ্ক</span>
+    </th>
+    <th scope="col" className="px-4 py-3 text-left text-xs font-semibold text-emerald-300 uppercase tracking-wider">
+      <i className="fas fa-user mr-1"></i>
+      <span>নাম</span>
+    </th>
+    <th scope="col" className="px-4 py-3 text-left text-xs font-semibold text-emerald-300 uppercase tracking-wider">
+      <i className="fas fa-sun mr-1"></i>
+      <span>আজকে</span>
+    </th>
+    <th scope="col" className="px-4 py-3 text-left text-xs font-semibold text-emerald-300 uppercase tracking-wider">
+      <i className="fas fa-calendar-week mr-1"></i>
+      <span>সপ্তাহ</span>
+    </th>
+    <th scope="col" className="px-4 py-3 text-left text-xs font-semibold text-emerald-300 uppercase tracking-wider">
+      <i className="fas fa-chart-line mr-1"></i>
+      <span>মোট</span>
+    </th>
+  </tr>
+</thead>
+               
+         <tbody className="divide-y divide-green-800/30">
+  {streakData.filter(user => user.Name && user.Name.trim() !== "").map((user, index) => (
+    <tr 
+      key={index} 
+      className={`hover:bg-green-900/20 transition-colors ${index % 2 === 0 ? 'bg-green-950/30' : 'bg-green-900/10'}`}
+      style={{ animationDelay: `${index * 0.05}s` }}
+    >
+      {/* Rank Column */}
+      <td className="px-4 py-4 whitespace-nowrap text-center">
+        <div className={`flex items-center justify-center ${index < 3 ? 'scale-110' : ''}`}>
+          <div className={`h-8 w-8 rounded-full flex items-center justify-center shadow-md
+            ${index === 0 ? 'bg-gradient-to-br from-yellow-400 to-yellow-600' : 
+              index === 1 ? 'bg-gradient-to-br from-gray-300 to-gray-500' : 
+              index === 2 ? 'bg-gradient-to-br from-amber-600 to-amber-800' : 
+              'bg-gradient-to-br from-green-800 to-green-900'}`}>
+            <span className={`font-bold ${index < 3 ? 'text-white' : 'text-emerald-300'}`}>
+              {index + 1}
+            </span>
+          </div>
+        </div>
+      </td>
 
-                  {/* Name Column */}
-                  <td className="px-4 py-4 whitespace-nowrap">
-                    <div className="flex items-center">
-                      <div className="flex-shrink-0 h-10 w-10 rounded-full bg-green-900/50 flex items-center justify-center mr-3">
-                        <i className="fas fa-user text-green-400"></i>
-                      </div>
-                      <div>
-                        <div className="text-sm font-medium text-green-100">{user.Name}</div>
-                        <div className="text-xs text-green-400">
-                          {user.Streak >= 7 ? (
-                            <span className="flex items-center"><i className="fas fa-fire text-red-400 mr-1"></i> On Fire</span>
-                          ) : user.Streak >= 4 ? (
-                            <span className="flex items-center"><i className="fas fa-bolt text-yellow-400 mr-1"></i> Focused</span>
-                          ) : (
-                            <span className="flex items-center"><i className="fas fa-seedling text-green-400 mr-1"></i> Beginner</span>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </td>
+      {/* Name Column - এখানে নাম, স্ট্রিক এবং ম্যাসেজ একসাথে দেখানো হচ্ছে */}
+      <td className="px-4 py-4">
+        <div className="flex items-center">
+          <div className="flex-shrink-0 h-10 w-10 rounded-full bg-green-900/50 flex items-center justify-center mr-3">
+            <i className="fas fa-user text-green-400"></i>
+          </div>
+          <div>
+            <div className="flex items-baseline">
+              <div className="text-sm font-medium text-green-100 mr-2">{user.Name}</div>
+              <div className="text-xs text-red-400 flex items-center">
+                <i className="fas fa-fire mr-1"></i>
+                {user.Streak}d
+              </div>
+            </div>
+            {user.Levels && (
+              <div className="text-xs text-blue-300 mt-1 flex items-center">
+                <i className="fas fa-comment-dots mr-1"></i>
+                {user.Levels}
+              </div>
+            )}
+          </div>
+        </div>
+      </td>
 
-                  {/* Today Studied */}
-                  <td className="px-4 py-4 whitespace-nowrap">
-                    <div className="flex items-center">
-                      <i className="fas fa-sun text-yellow-400 mr-2"></i>
-                      <div className="text-sm font-medium text-green-200">
-                        {formatDecimal(user["Today Studied"])}h
-                      </div>
-                    </div>
-                  </td>
+      {/* Today Studied */}
+      <td className="px-4 py-4 whitespace-nowrap">
+        <div className="flex items-center">
+          <i className="fas fa-sun text-yellow-400 mr-2"></i>
+          <div className="text-sm font-medium text-green-200">
+            {formatDecimal(user["Today Studied"])}h
+          </div>
+        </div>
+      </td>
 
-                  {/* This Week Studied */}
-                  <td className="px-4 py-4 whitespace-nowrap">
-                    <div className="flex items-center">
-                      <i className="fas fa-calendar-week text-blue-400 mr-2"></i>
-                      <div className="text-sm font-semibold text-emerald-300">
-                        {formatDecimal(user["This Week Studied"])}h
-                      </div>
-                    </div>
-                  </td>
+      {/* This Week Studied */}
+      <td className="px-4 py-4 whitespace-nowrap">
+        <div className="flex items-center">
+          <i className="fas fa-calendar-week text-blue-400 mr-2"></i>
+          <div className="text-sm font-semibold text-emerald-300">
+            {formatDecimal(user["This Week Studied"])}h
+          </div>
+        </div>
+      </td>
 
-                  {/* Total Studied */}
-                  <td className="px-4 py-4 whitespace-nowrap">
-                    <div className="flex items-center">
-                      <i className="fas fa-chart-line text-purple-400 mr-2"></i>
-                      <div className="text-sm text-green-200">
-                        {formatDecimal(user["Total Studied"])}h
-                      </div>
-                    </div>
-                  </td>
-
-                  {/* Streak */}
-                  <td className="px-4 py-4 whitespace-nowrap">
-                    <div className="flex items-center">
-                      <i className="fas fa-fire text-red-400 mr-2"></i>
-                      <div className="text-sm text-green-200">
-                        {user.Streak}d
-                      </div>
-                    </div>
-                  </td>
-
-                  {/* Level */}
-                  <td className="px-4 py-4 whitespace-nowrap">
-                    <div className="flex items-center">
-                      <i className="fas fa-medal text-amber-400 mr-2"></i>
-                      <div className="flex flex-col">
-                        <span className="text-xs text-emerald-300">Lv.{parseLevelData(user.Levels).level}</span>
-                        <div className="flex mt-1">
-                          {Array(5).fill().map((_, i) => (
-                            <div
-                              key={i}
-                              className={`h-1 w-2 rounded-sm mx-px ${i < Math.floor(parseLevelData(user.Levels).progress / 20) ? 'bg-green-400' : 'bg-green-800'}`}
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
+      {/* Total Studied */}
+      <td className="px-4 py-4 whitespace-nowrap">
+        <div className="flex items-center">
+          <i className="fas fa-chart-line text-purple-400 mr-2"></i>
+          <div className="text-sm text-green-200">
+            {formatDecimal(user["Total Studied"])}h
+          </div>
+        </div>
+      </td>
+    </tr>
+  ))}
+</tbody>
           </table>
         </div>
       )}
@@ -971,16 +1012,16 @@ const StreakDashboard = () => {
             <strong>ড্যাশবোর্ড দেখো:</strong> Streak; Today, This Week, Total Studied সহ নিজেকে ট্র্যাক করার সেরা উপায়! 
           </li>
           <li>
-            <strong>র‍্যাংক:</strong> প্রটি সপ্তাহে র‍্যাংক রিসেট হবে, উইকলি পজিশন দেখতে সেরা ৩ জনের জন্য ফ্ল্যাগ 🏆 আছে, বাকিদের Rank # দেখতে পাবে।
+            <strong>র‍্যাংক:</strong> প্রটি সপ্তাহে ঠিক শনিবার সকাল ৫ টায় র‍্যাংক রিসেট হবে। 
           </li>
           <li>
-            <strong>স্ট্যাটাস:</strong> ৭+ দিন = "🔥 On Fire", ৪–৬ দিন = "⚡ Focused", ১–৩ দিন = "🌱 Just Started"।
+            <strong>এডমিন ম্যাসেজ:</strong> এটা সারপ্রাইজ, মাঝে মাঝেই নিউ ম্যাসেজ পাবে।
           </li>
           <li>
-            <strong>প্রোগ্রেস যুক্ত করো:</strong> "Add Your Progress" বাটনে ক্লিক করে ফর্ম পূরণ করো (নাম, ঘণ্টা, লক্ষ্য ইত্যাদি)। সাবমিট করলেই ড্যাশবোর্ড আপডেট হবে।
+            <strong>প্রোগ্রেস যুক্ত করো:</strong> "Add Your Progress" বাটনে ক্লিক করে ফর্ম পূরণ করো (নাম, ঘণ্টা, ইত্যাদি)। সাবমিট করলেই ড্যাশবোর্ড আপডেট হবে।
           </li>
           <li>
-            <strong>গোল সেট করো:</strong> লক্ষ্য 🎯 ও Deadline 🚩 দিলে নিজের অগ্রগতি ট্র্যাক করতে পারবে।
+            <strong>ম্যাসেজ ফর এডমিন:</strong> চাইলে যে কিছু এডমিনকে জানাতে ফর্মের এই অপশন বেবহার করতে পারো এটা অপশনাল। চাইলে মোটিভেশনও দিতে পারো (অগ্রিম থ্যাংকস)। 
           </li>
         </ol>
 
