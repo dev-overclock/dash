@@ -614,41 +614,31 @@ tr {
     </style>
   </head>
   <body>
-<!-- মিম পপআপ -->
-<div class="meme-popup" id="memePopup">
-  <img src="meme.png" alt="প্রবলেম হয়েছে ২/৩ বার রিফ্রেশ দেন!" class="meme-img">
-  <button class="close-btn" onclick="closePopup()">✕</button>
-</div>
+<body>
+  <!-- মিম ওভারলে -->
+  <div class="meme-overlay" id="memeOverlay">
+    <img src="meme.png" alt="লোডিং... (রিফ্রেশ প্লিজ)" class="meme-image">
+    <button class="close-btn" onclick="closeMeme()">X</button>
+  </div>
 
-<!-- আপনার মূল কন্টেন্ট -->
-<div id="mainContent">
-  <!-- আপনার ওয়েবসাইট কন্টেন্ট -->
-</div>
+  <!-- আপনার মূল কন্টেন্ট (লোডিং শেষে দেখা যাবে) -->
+  <div id="mainContent" style="display:none;">
+    <!-- আপনার মূল ওয়েবসাইট কন্টেন্ট -->
+  </div>
 
-<script>
-  // মোবাইল ডিভাইস চেক করার ফাংশন
-  function isMobileDevice() {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-  }
+  <script>
+    // 3 সেকেন্ড পর মিম হাইড করবে
+    setTimeout(() => {
+      document.getElementById('memeOverlay').style.display = 'none';
+      document.getElementById('mainContent').style.display = 'block';
+    }, 5000);
 
-  // পপআপ বন্ধ করার ফাংশন
-  function closePopup() {
-    document.getElementById('memePopup').style.display = 'none';
-  }
-
-  // পেজ লোড হলে চেক করবে
-  window.addEventListener('load', function() {
-    if(isMobileDevice()) {
-      // শুধু মোবাইলে ৩ সেকেন্ড পর পপআপ দেখাবে
-      setTimeout(function() {
-        document.getElementById('memePopup').style.display = 'flex';
-        
-        // ১০ সেকেন্ড পর অটো বন্ধ হবে
-        setTimeout(closePopup, 10000);
-      }, 3000);
+    // ম্যানুয়ালি বন্ধ করার অপশন
+    function closeMeme() {
+      document.getElementById('memeOverlay').style.display = 'none';
+      document.getElementById('mainContent').style.display = 'block';
     }
-  });
-</script>
+  </script>
     <script>
       // Service Worker রেজিস্ট্রেশন
       if ('serviceWorker' in navigator) {
