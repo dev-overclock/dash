@@ -28,6 +28,41 @@
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
+
+/* মিম ডিসপ্লে স্টাইল */
+    .meme-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+    }
+    
+    .meme-image {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+    }
+    
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #10b981;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
 /* মোবাইল ডিভাইসে টেবিল হেডার স্টাইল */
 @media (max-width: 768px) {
   th {
@@ -579,6 +614,29 @@ tr {
     </style>
   </head>
   <body>
+ <!-- মিম ওভারলে -->
+  <div class="meme-overlay" id="memeOverlay">
+    <img src="meme.png" alt="মোটিভেশনাল মিম" class="meme-image">
+    <button class="close-btn" onclick="closeMeme()">X</button>
+  </div>
+
+  <!-- আপনার মূল কন্টেন্ট (লোডিং শেষে দেখা যাবে) -->
+  <div id="mainContent" style="display:none;">
+    <!-- আপনার মূল ওয়েবসাইট কন্টেন্ট -->
+  </div>
+<script>
+    // 3 সেকেন্ড পর মিম হাইড করবে
+    setTimeout(() => {
+      document.getElementById('memeOverlay').style.display = 'none';
+      document.getElementById('mainContent').style.display = 'block';
+    }, 3000);
+
+    // ম্যানুয়ালি বন্ধ করার অপশন
+    function closeMeme() {
+      document.getElementById('memeOverlay').style.display = 'none';
+      document.getElementById('mainContent').style.display = 'block';
+    }
+  </script>
     <script>
       // Service Worker রেজিস্ট্রেশন
       if ('serviceWorker' in navigator) {
