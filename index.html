@@ -18,7 +18,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Overclock</title>
     <!-- ফেভিকন সেট করার জন্য নিচের লাইনটি যোগ করো -->
-    <link rel="icon" type="/home/astronaut/Music/" href="schedule.png" />
+    <!-- আপনার favicon.png ফাইলটিকে রুট ফোল্ডারে রাখুন -->
+    <link rel="icon" type="image/png" href="favicon.png" /> 
+
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
@@ -64,23 +66,30 @@
     }
 
 /* মোবাইল ডিভাইসে টেবিল হেডার স্টাইল */
-@media (max-width: 768px) {
+/* এই স্টাইলগুলো আগের টেবিলের জন্য ছিল, নতুন ব্যানার স্ট্রাকচারের জন্য প্রয়োজন নেই */
+/* @media (max-width: 768px) {
   th {
-    white-space: nowrap; /* টেক্সট যেন লাইন ব্রেক না হয় */
-    padding: 8px 12px; /* প্যাডিং সামান্য কমিয়ে দিন */
+    white-space: nowrap;
+    padding: 8px 10px;
+    font-size: 0.7rem;
   }
   
   th i.fas {
-    display: inline-block; /* আইকনকে ইনলাইন ব্লক হিসেবে রাখুন */
-    margin-right: 4px; /* টেক্সটের সাথে ফাঁকা স্থান কমিয়ে দিন */
-    vertical-align: middle; /* ভার্টিক্যাল অ্যালাইনমেন্ট */
+    display: inline-block;
+    margin-right: 2px;
+    vertical-align: middle;
   }
   
   th span {
-    display: inline-block; /* টেক্সটকেও ইনলাইন ব্লক করুন */
-    vertical-align: middle; /* ভার্টিক্যাল অ্যালাইনমেন্ট */
+    display: inline-block;
+    vertical-align: middle;
   }
-}
+
+    td {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+    }
+} */
 
 
 /* মোবাইল অপ্টিমাইজেশন */
@@ -99,6 +108,8 @@
     font-size: 14px;
   }
   
+  /* টেবিল স্টাইলগুলো আগের টেবিলের জন্য */
+  /*
   table {
     font-size: 0.85rem;
   }
@@ -106,6 +117,7 @@
   th, td {
     padding: 8px 10px;
   }
+  */
 }
 
 /* ট্যাবলেট ভিউ */
@@ -114,12 +126,15 @@
     width: 85%;
   }
   
+   /* টেবিল স্টাইলগুলো আগের টেবিলের জন্য */
+   /*
   th, td {
     padding: 10px 12px;
   }
+   */
 }
     
-/* টেবিল স্টাইল */
+/* টেবিল স্টাইল (মূল ড্যাশবোর্ডের জন্য) */
 table {
   border-collapse: separate;
   border-spacing: 0;
@@ -131,6 +146,7 @@ th {
   top: 0;
   z-index: 10;
   backdrop-filter: blur(8px);
+  background: rgba(6, 78, 59, 0.8); /* থেম কালারের সাথে সামঞ্জস্যপূর্ণ */
 }
 
 th, td {
@@ -163,7 +179,7 @@ tr {
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
-/* প্রোগ্রেস বার স্টাইল */
+/* প্রোগ্রেস বার স্টাইল (যদি ফর্মে থাকে) */
 .progress-container {
   display: flex;
   align-items: center;
@@ -187,7 +203,7 @@ tr {
   box-shadow: 0 1px 3px rgba(52, 211, 153, 0.3);
 }
 
-/* আইকন স্টাইল */
+/* আইকন স্টাইল (মূল ড্যাশবোর্ডের জন্য) */
 .table-icon {
   font-size: 0.9rem;
   margin-right: 8px;
@@ -196,7 +212,7 @@ tr {
   color: rgba(110, 231, 183, 0.8);
 }
 
-/* মোবাইল ভিউ */
+/* মোবাইল ভিউ (মূল ড্যাশবোর্ডের জন্য) */
 @media (max-width: 768px) {
   th, td {
     padding: 10px 12px;
@@ -220,6 +236,7 @@ tr {
         margin: 0;
         opacity: 0;
         animation: fadeIn 0.8s ease-out forwards;
+        font-family: 'Hind Siliguri', sans-serif; /* Added Bengali font to body */
       }
 
       .modal-overlay {
@@ -602,7 +619,8 @@ tr {
         text-shadow: 0 2px 4px rgba(0,0,0,0.3);
       }
 
-      /* Card hover animation */
+      /* Card hover animation (মূল ড্যাশবোর্ডের ইউজার কার্ডের জন্য) */
+      /*
       .user-card {
         transition: all 0.3s ease;
       }
@@ -611,36 +629,250 @@ tr {
         transform: translateY(-5px);
         box-shadow: 0 10px 20px rgba(0, 255, 128, 0.2);
       }
+      */
+
+      /* ----- Routine Banner Styles ----- */
+      .routine-banner-container {
+          max-width: 7xl;
+          margin-left: auto;
+          margin-right: auto;
+          margin-bottom: 2.5rem; /* mb-10 */
+          padding: 0.5rem 1rem; /* py-2 px-4 */
+          border-radius: 0.75rem; /* rounded-xl */
+          border: 1px solid rgba(6, 78, 59, 0.5); /* border-green-800/50 */
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-lg */
+          background: linear-gradient(to bottom right, rgba(2, 44, 34, 0.8), rgba(0, 0, 0, 0.3)); /* bg-gradient-to-br from-green-950/80 to-green-900/30 */
+      }
+       /* মোবাইল ভিউতে প্যাডিং কমানো */
+       @media (max-width: 768px) {
+           .routine-banner-container {
+               padding: 0.5rem; /* py-2 px-2 */
+           }
+            .routine-banner-container h2 {
+                font-size: 1.1rem; /* text-lg */
+                margin-bottom: 0.75rem; /* mb-3 */
+            }
+       }
+
+
+      .routine-scroll-wrapper {
+          overflow-x: auto;
+          scrollbar-width: thin; /* Firefox */
+          scrollbar-color: #10b981 #064e3b; /* Firefox scrollbar */
+      }
+
+       /* Chrome, Edge, Safari scrollbar */
+      .routine-scroll-wrapper::-webkit-scrollbar {
+          height: 6px;
+      }
+      .routine-scroll-wrapper::-webkit-scrollbar-track {
+          background: #064e3b; /* Green-900 */
+          border-radius: 3px;
+      }
+      .routine-scroll-wrapper::-webkit-scrollbar-thumb {
+          background: #10b981; /* Teal-600 */
+          border-radius: 3px;
+      }
+       .routine-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+          background: #059669; /* Teal-500 */
+      }
+
+
+      .routine-cards-flex {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap; /* Prevent wrapping */
+          gap: 0.5rem; /* gap-x-2 */
+          padding-bottom: 0.5rem; /* Add padding for scrollbar */
+      }
+
+      .routine-card {
+          flex-shrink: 0; /* Prevent cards from shrinking */
+          width: 150px; /* Fixed width for each card (Adjusted slightly smaller) */
+          padding: 0.75rem; /* p-3 */
+          border-radius: 0.5rem; /* rounded-md */
+          background-color: rgba(6, 78, 59, 0.4); /* green-900 with transparency */
+          border: 1px solid rgba(6, 78, 59, 0.6); /* green-900 border */
+          text-align: center;
+          transition: all 0.2s ease;
+          display: flex; /* Use flexbox for vertical alignment */
+          flex-direction: column;
+          justify-content: center; /* Center content vertically */
+      }
+       .routine-card:hover {
+           background-color: rgba(6, 78, 59, 0.6);
+           border-color: #10b981; /* Teal-600 */
+       }
+
+
+      .routine-card .date {
+          font-size: 0.8rem; /* text-xs */
+          color: #a7f3d0; /* green-200 */
+          margin-bottom: 0.25rem; /* mb-1 */
+      }
+
+      .routine-card .day {
+          font-size: 0.75rem; /* text-xs */
+          color: #34d399; /* green-400 */
+          margin-bottom: 0.5rem; /* mb-2 */
+          font-weight: bold; /* Make day number bold */
+      }
+
+      .routine-card .subject {
+          font-size: 0.9rem; /* text-sm */
+          font-weight: 600; /* font-semibold */
+          color: #ecfdf5; /* green-50 */
+          word-break: break-word; /* Allow long subjects to wrap */
+          line-height: 1.3; /* Adjust line height */
+      }
+       /* মোবাইল ভিউতে ফন্ট সাইজ কমানো */
+       @media (max-width: 768px) {
+           .routine-card {
+               width: 120px; /* মোবাইল ভিউতে কার্ড আরও চিকন */
+               padding: 0.5rem; /* প্যাডিং কমানো */
+           }
+           .routine-card .date {
+               font-size: 0.7rem;
+           }
+           .routine-card .day {
+               font-size: 0.65rem;
+           }
+           .routine-card .subject {
+               font-size: 0.8rem;
+           }
+       }
+
+
+      /* Highlight style for current day */
+      .routine-card.current-day-card {
+          background-color: rgba(16, 185, 129, 0.3); /* Teal-600 with transparency */
+          border: 2px solid #10b981; /* Teal-600 */
+          box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+          animation: pulseBorder 2s infinite ease-in-out;
+      }
+
+      .routine-card.current-day-card .date,
+      .routine-card.current-day-card .day,
+      .routine-card.current-day-card .subject {
+           color: #a7f3d0; /* Green-200 */
+           font-weight: bold;
+      }
+
+
+        /* Animation for current day highlight */
+       @keyframes pulseBorder {
+           0% { border-color: rgba(16, 185, 129, 0.5); box-shadow: 0 0 10px rgba(16, 185, 129, 0.3); }
+           50% { border-color: rgba(16, 185, 129, 1); box-shadow: 0 0 15px rgba(16, 185, 129, 0.7); }
+           100% { border-color: rgba(16, 185, 129, 0.5); box-shadow: 0 0 10px rgba(16, 185, 129, 0.3); }
+       }
+
     </style>
   </head>
-  <body>
 <body>
   <!-- মিম ওভারলে -->
   <div class="meme-overlay" id="memeOverlay">
+    <!-- Ensure 'meme.png' is in your root folder -->
     <img src="meme.png" alt="লোডিং... (রিফ্রেশ প্লিজ)" class="meme-image">
     <button class="close-btn" onclick="closeMeme()">X</button>
   </div>
 
   <!-- আপনার মূল কন্টেন্ট (লোডিং শেষে দেখা যাবে) -->
-  <div id="mainContent" style="display:none;">
-    <!-- আপনার মূল ওয়েবসাইট কন্টেন্ট -->
+  <div id="mainContent" style="display:none;" class="px-4 py-6">
+
+    <!-- Routine Section Start -->
+    <!-- এই সেকশনটি ৯ দিন পর নিরাপদে মুছে ফেলতে পারেন -->
+    <div id="routineSection" class="routine-banner-container">
+        <h2 class="text-lg font-bold text-green-100 text-center mb-3">
+            ৯ দিনে সিলেবাস খায়ালাম! 🎀
+        </h2>
+        <div class="routine-scroll-wrapper">
+            <div id="routineCards" class="routine-cards-flex">
+                <!-- Routine cards will be generated here by JavaScript -->
+            </div>
+        </div>
+    </div>
+    <!-- Routine Section End -->
+
+    <div id="root"></div>
   </div>
 
   <script>
-    // 3 সেকেন্ড পর মিম হাইড করবে
+    // 3 সেকেন্ড পর মিম হাইড করবে (আপনার কোডের অংশ)
     setTimeout(() => {
       document.getElementById('memeOverlay').style.display = 'none';
       document.getElementById('mainContent').style.display = 'block';
     }, 5000);
 
-    // ম্যানুয়ালি বন্ধ করার অপশন
+    // ম্যানুয়ালি বন্ধ করার অপশন (আপনার কোডের অংশ)
     function closeMeme() {
       document.getElementById('memeOverlay').style.display = 'none';
       document.getElementById('mainContent').style.display = 'block';
     }
+
+     // JavaScript for generating and highlighting the routine cards
+     document.addEventListener('DOMContentLoaded', function() {
+        const routineData = [
+            { date: '2024-06-16', dayNum: 1, subject: 'কেমেস্ট্রি + বায়োলজি' },
+            { date: '2024-06-17', dayNum: 2, subject: 'কেমেস্ট্রি + বায়োলজি' },
+            { date: '2024-06-18', dayNum: 3, subject: 'বাংলা' },
+            { date: '2024-06-19', dayNum: 4, subject: 'হায়ার মেথ + বায়োলজি' },
+            { date: '2024-06-20', dayNum: 5, subject: 'হায়ার মেথ + বায়োলজি' },
+            { date: '2024-06-21', dayNum: 6, subject: 'ইংরেজি' },
+            { date: '2024-06-22', dayNum: 7, subject: 'ফিজিক্স + বায়োলজি' },
+            { date: '2024-06-23', dayNum: 8, subject: 'ফিজিক্স + বায়োলজি' },
+            { date: '2024-06-24', dayNum: 9, subject: 'আইসিটি' },
+        ];
+
+        const routineCardsContainer = document.getElementById('routineCards');
+        const today = new Date();
+        // Normalize today's date to the start of the day for comparison
+        today.setHours(0, 0, 0, 0);
+        
+        const todayString = today.getFullYear() + '-' +
+                          ('0' + (today.getMonth() + 1)).slice(-2) + '-' +
+                          ('0' + today.getDate()).slice(-2);
+
+        let currentDayCard = null;
+
+        routineData.forEach(day => {
+            const card = document.createElement('div');
+            card.classList.add('routine-card');
+            card.setAttribute('data-date', day.date);
+
+            const dateParts = day.date.split('-'); // YYYY-MM-DD
+            const monthNames = ["জানু", "ফেব্রু", "মার্চ", "এপ্রিল", "মে", "জুন", "জুলাই", "আগস্ট", "সেপ্টেম্বর", "অক্টোবর", "নভে", "ডিসে"];
+            const displayDate = monthNames[parseInt(dateParts[1], 10) - 1] + ' ' + parseInt(dateParts[2], 10); // e.g., জুন ১৬
+
+            card.innerHTML = `
+                <div class="date">${displayDate}</div>
+                <div class="day">দিন ${day.dayNum}</div>
+                <div class="subject">${day.subject}</div>
+            `;
+
+            // Compare dates by converting routine date string to Date object (start of day)
+             const routineDate = new Date(day.date);
+             routineDate.setHours(0, 0, 0, 0);
+
+            if (routineDate.getTime() === today.getTime()) {
+                card.classList.add('current-day-card');
+                currentDayCard = card; // Store reference to the current day card
+            }
+
+            routineCardsContainer.appendChild(card);
+        });
+
+        // Scroll the current day card into view
+        if (currentDayCard) {
+            // Use a small timeout to ensure layout is calculated and scrollIntoView works correctly
+             setTimeout(() => {
+                currentDayCard.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+             }, 150); // Increased timeout slightly for better reliability
+        }
+
+     });
   </script>
     <script>
-      // Service Worker রেজিস্ট্রেশন
+      // Service Worker রেজিস্ট্রেশন (আপনার কোডের অংশ)
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/sw.js')
@@ -654,9 +886,8 @@ tr {
       }
     </script>
 
-    <div id="root" class="px-4 py-6"></div>
 
-    <!-- Study Form Popup -->
+    <!-- Study Form Popup (আপনার কোডের অংশ) -->
     <div id="studyFormPopup" class="modal-overlay" style="display: none;">
       <div class="modal-content">
         <button onclick="closeStudyForm()" class="close-button">
@@ -685,10 +916,6 @@ tr {
   <textarea id="goal" name="goal" rows="3" placeholder="এডমিনের জন্য কোনো ম্যাসেজ থাকলে লিখুন"></textarea>
 </div>
             
-           
-            
-           
-            
             <button type="submit" id="submitBtn">সাবমিট করুন</button>
           </form>
           
@@ -704,31 +931,31 @@ tr {
     </div>
 
     <script>
-      // Set default date to today
+      // Set default date to today (আপনার কোডের অংশ)
       function setDefaultDate() {
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('date').value = today;
       }
       
-      // Update progress bar display
-      function updateProgress(value) {
-        document.getElementById('progressFill').style.width = value + '%';
-        document.getElementById('progressValue').textContent = value + '%';
-      }
+      // Update progress bar display (আপনার কোডের অংশ)
+      // function updateProgress(value) {
+      //   document.getElementById('progressFill').style.width = value + '%';
+      //   document.getElementById('progressValue').textContent = value + '%';
+      // }
       
-      // Initialize progress bar
+      // Initialize progress bar (আপনার কোডের অংশ)
      //  function initProgressBar() {
         // updateProgress(0);
       //}
       
-      // Study Form functions
+      // Study Form functions (আপনার কোডের অংশ)
       function openStudyForm() {
         const popup = document.getElementById('studyFormPopup');
         const content = document.querySelector('.modal-content');
         popup.style.display = 'flex';
         document.body.style.overflow = 'hidden';
         setDefaultDate();
-        initProgressBar();
+        // initProgressBar(); // Progress bar might not be needed for this simplified form
         
         // Reset animation classes
         popup.classList.remove('closing');
@@ -754,14 +981,14 @@ tr {
         }, 300);
       }
 
-      // Close popup when clicking outside
+      // Close popup when clicking outside (আপনার কোডের অংশ)
       document.getElementById('studyFormPopup').addEventListener('click', function(e) {
         if (e.target === this) {
           closeStudyForm();
         }
       });
       
-// Handle form submission
+// Handle form submission (আপনার কোডের অংশ)
 document.getElementById('studyForm').addEventListener('submit', function(e) {
   e.preventDefault();
   
@@ -825,7 +1052,7 @@ document.getElementById('studyForm').addEventListener('submit', function(e) {
     submitBtn.textContent = 'সাবমিট করুন';
   });
 });
-      // Format decimal numbers to 1 decimal place
+      // Format decimal numbers to 1 decimal place (আপনার কোডের অংশ)
       function formatDecimal(num) {
         return parseFloat(num).toFixed(1);
       }
@@ -838,7 +1065,7 @@ document.getElementById('studyForm').addEventListener('submit', function(e) {
 
 
  <script type="text/babel">
-// পুরানো ফাংশন সরিয়ে দিন
+// পুরানো ফাংশন সরিয়ে দিন (আপনার কোডের অংশ)
 // const parseLevelData = (levelStr) => {
 //   if (!levelStr) return { level: 1, progress: 0 };
 //   
@@ -851,9 +1078,9 @@ document.getElementById('studyForm').addEventListener('submit', function(e) {
 //   return { level, progress };
 // };
 
-// নতুন ফাংশন যেটা সরাসরি ম্যাসেজ রিটার্ন করবে
+// নতুন ফাংশন যেটা সরাসরি ম্যাসেজ রিটার্ন করবে (আপনার কোডের অংশ)
 const parseLevelData = (levelStr) => {
-  return levelStr || "Level 1 - 0%"; // ডিফল্ট ভ্যালু
+  return levelStr || ""; // ডিফল্ট ভ্যালু হিসেবে খালি স্ট্রিং ভাল
 };
 
 const { useState, useEffect } = React;
@@ -863,14 +1090,17 @@ const StreakDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [refreshTrigger, setRefreshTrigger] = useState(false);
 
-  const googleSheetWebAppURL = "https://script.google.com/macros/s/AKfycbzT9_z2v02qAEMLzXsvvdelaRQGR2ZS5IpWqCCCB2N5_ih076Q7Eg7WBGukJ-3wXkBxRg/exec";
+  const googleSheetWebAppURL = "https://script.google.com/macros/s/AKfycbzT9_z2v02qAEMLzXsvvdelaRQGR2ZS5IpWqCCCB2N5_ih076Q7Eg7WBGukJ-3wXkBxRg/exec"; // আপনার Google Apps Script URL
 
   const fetchData = () => {
     setLoading(true);
     fetch(googleSheetWebAppURL)
       .then((res) => res.json())
       .then((data) => {
-        const sortedData = data.sort((a, b) => b["This Week Studied"] - a["This Week Studied"]);
+        // Filter out rows where 'Name' is null, empty, or just whitespace
+        const filteredData = data.filter(user => user.Name && user.Name.trim() !== "");
+        // Sort data by 'This Week Studied' descending
+        const sortedData = filteredData.sort((a, b) => (b["This Week Studied"] || 0) - (a["This Week Studied"] || 0)); // Ensure default to 0 for comparison
         setStreakData(sortedData);
         setLoading(false);
       })
@@ -882,15 +1112,24 @@ const StreakDashboard = () => {
 
   useEffect(() => {
     fetchData();
+    // Expose refreshDashboard globally so the form can call it
     window.refreshDashboard = () => {
       setRefreshTrigger(prev => !prev);
     };
+     // Cleanup function for the global function
+     return () => {
+         window.refreshDashboard = null;
+     };
   }, [refreshTrigger]);
 
-  const targetDate = new Date("2025-06-25");
+  const targetDate = new Date("2025-06-25"); // লক্ষ্য তারিখ ঠিক আছে
   const today = new Date();
-  const daysLeft = Math.max(0, Math.ceil((targetDate - today) / (1000 * 60 * 60 * 24)));
-  const motivation = "⚡ চলছে 100_HOURS চ্যালেঞ্জ! প্রতি শনি-শুক্র;"
+   // দিনের সংখ্যা গণনা (তারিখের পার্থক্য)
+  const diffTime = targetDate.getTime() - today.getTime();
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  const daysLeft = Math.max(0, diffDays); // নেগেটিভ যেন না হয়
+
+  const motivation = "⚡ চলছে 100_HOURS চ্যালেঞ্জ! প্রতি শনি-শুক্র;";
 
   return (
     <div className="max-w-7xl mx-auto space-y-8 pt-0">
@@ -901,8 +1140,8 @@ const StreakDashboard = () => {
         <p className="text-lg text-green-300">{motivation}</p>
       </div>
 
-      <button 
-        onClick={openStudyForm} 
+      <button
+        onClick={openStudyForm}
         className="form-button"
       >
         <i className="fas fa-plus"></i> Add Your Progress
@@ -942,9 +1181,9 @@ const StreakDashboard = () => {
 </thead>
                
          <tbody className="divide-y divide-green-800/30">
-  {streakData.filter(user => user.Name && user.Name.trim() !== "").map((user, index) => (
-    <tr 
-      key={index} 
+  {streakData.map((user, index) => (
+    <tr
+      key={index}
       className={`hover:bg-green-900/20 transition-colors ${index % 2 === 0 ? 'bg-green-950/30' : 'bg-green-900/10'}`}
       style={{ animationDelay: `${index * 0.05}s` }}
     >
@@ -952,11 +1191,11 @@ const StreakDashboard = () => {
       <td className="px-4 py-4 whitespace-nowrap text-center">
         <div className={`flex items-center justify-center ${index < 3 ? 'scale-110' : ''}`}>
           <div className={`h-8 w-8 rounded-full flex items-center justify-center shadow-md
-            ${index === 0 ? 'bg-gradient-to-br from-yellow-400 to-yellow-600' : 
-              index === 1 ? 'bg-gradient-to-br from-gray-300 to-gray-500' : 
-              index === 2 ? 'bg-gradient-to-br from-amber-600 to-amber-800' : 
+            ${index === 0 ? 'bg-gradient-to-br from-yellow-400 to-yellow-600' :
+              index === 1 ? 'bg-gradient-to-br from-gray-300 to-gray-500' :
+              index === 2 ? 'bg-gradient-to-br from-amber-600 to-amber-800' :
               'bg-gradient-to-br from-green-800 to-green-900'}`}>
-            <span className={`font-bold ${index < 3 ? 'text-white' : 'text-emerald-300'}`}>
+            <span className={`font-bold ${index < 3 ? 'text-black' : 'text-emerald-300'}`}>
               {index + 1}
             </span>
           </div>
@@ -966,21 +1205,24 @@ const StreakDashboard = () => {
       {/* Name Column - এখানে নাম, স্ট্রিক এবং ম্যাসেজ একসাথে দেখানো হচ্ছে */}
       <td className="px-4 py-4">
         <div className="flex items-center">
-          <div className="flex-shrink-0 h-10 w-10 rounded-full bg-green-900/50 flex items-center justify-center mr-3">
-            <i className="fas fa-user text-green-400"></i>
+           {/* User Avatar Placeholder */}
+          <div className="flex-shrink-0 h-10 w-10 rounded-full bg-green-800/50 flex items-center justify-center mr-3 border border-green-700">
+            <i className="fas fa-user text-green-400 text-lg"></i>
           </div>
           <div>
-            <div className="flex items-baseline">
-              <div className="text-sm font-medium text-green-100 mr-2">{user.Name}</div>
-              <div className="text-xs text-red-400 flex items-center">
-                <i className="fas fa-fire mr-1"></i>
-                {user.Streak}d
-              </div>
+            <div className="flex items-baseline flex-wrap"> {/* flex-wrap added for small screens */}
+              <div className="text-sm font-medium text-green-100 mr-2 break-words">{user.Name}</div> {/* break-words added */}
+              {user.Streak > 0 && (
+                <div className="text-xs text-red-400 flex items-center whitespace-nowrap"> {/* whitespace-nowrap added */}
+                  <i className="fas fa-fire mr-1"></i>
+                  {user.Streak}d
+                </div>
+              )}
             </div>
-            {user.Levels && (
-              <div className="text-xs text-blue-300 mt-1 flex items-center">
+            {parseLevelData(user.Levels) && (
+              <div className="text-xs text-blue-300 mt-1 flex items-center break-words"> {/* break-words added */}
                 <i className="fas fa-comment-dots mr-1"></i>
-                {user.Levels}
+                {parseLevelData(user.Levels)}
               </div>
             )}
           </div>
@@ -989,31 +1231,25 @@ const StreakDashboard = () => {
 
       {/* Today Studied */}
       <td className="px-4 py-4 whitespace-nowrap">
-        <div className="flex items-center">
+        <div className="flex items-center text-sm font-medium text-green-200">
           <i className="fas fa-sun text-yellow-400 mr-2"></i>
-          <div className="text-sm font-medium text-green-200">
-            {formatDecimal(user["Today Studied"])}h
-          </div>
+          {formatDecimal(user["Today Studied"] || 0)}h {/* Ensure 0 if null */}
         </div>
       </td>
 
       {/* This Week Studied */}
       <td className="px-4 py-4 whitespace-nowrap">
-        <div className="flex items-center">
+        <div className="flex items-center text-sm font-semibold text-emerald-300">
           <i className="fas fa-calendar-week text-blue-400 mr-2"></i>
-          <div className="text-sm font-semibold text-emerald-300">
-            {formatDecimal(user["This Week Studied"])}h
-          </div>
+          {formatDecimal(user["This Week Studied"] || 0)}h {/* Ensure 0 if null */}
         </div>
       </td>
 
       {/* Total Studied */}
       <td className="px-4 py-4 whitespace-nowrap">
-        <div className="flex items-center">
+        <div className="flex items-center text-sm text-green-200">
           <i className="fas fa-chart-line text-purple-400 mr-2"></i>
-          <div className="text-sm text-green-200">
-            {formatDecimal(user["Total Studied"])}h
-          </div>
+          {formatDecimal(user["Total Studied"] || 0)}h {/* Ensure 0 if null */}
         </div>
       </td>
     </tr>
@@ -1030,7 +1266,7 @@ const StreakDashboard = () => {
             <strong>ড্যাশবোর্ড দেখো:</strong> Streak; Today, This Week, Total Studied সহ নিজেকে ট্র্যাক করার সেরা উপায়! 
           </li>
           <li>
-            <strong>র‍্যাংক:</strong> প্রটি সপ্তাহে ঠিক শনিবার সকাল ৫ টায় র‍্যাংক রিসেট হবে। 
+            <strong>র‍্যাংক:</strong> প্রতি সপ্তাহে ঠিক শনিবার সকাল ৫ টায় র‍্যাংক রিসেট হবে। 
           </li>
           <li>
             <strong>এডমিন ম্যাসেজ:</strong> এটা সারপ্রাইজ, মাঝে মাঝেই নিউ ম্যাসেজ পাবে।
@@ -1058,3 +1294,6 @@ const StreakDashboard = () => {
 
 ReactDOM.render(<StreakDashboard />, document.getElementById("root"));
 </script>
+
+</body>
+</html>
