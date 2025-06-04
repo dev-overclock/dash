@@ -52,7 +52,7 @@
         width: 100%;
         height: 100%;
         background: rgba(0, 0, 0, 0.9);
-        display: flex;
+        display: flex; /* Initially flex to show */
         justify-content: center;
         align-items: center;
         z-index: 10000;
@@ -161,10 +161,15 @@
         color: white;
         overflow-x: hidden;
         margin: 0;
-        opacity: 0;
+        opacity: 0; /* Body will be initially transparent */
         animation: fadeInBody 0.8s ease-out forwards; 
         font-family: 'Hind Siliguri', sans-serif; 
       }
+       /* Make sure mainContent is initially hidden if meme is shown */
+      #mainContent {
+        display: none; /* Start as hidden */
+      }
+
 
       .modal-overlay {
         position: fixed;
@@ -308,14 +313,14 @@
       
       /* Success Animation */
       .success-animation { display: none; text-align: center; margin-top: 20px; animation: fadeInSuccess 0.5s ease-in-out; }
-      .checkmark { width: 100px; height: 100px; border-radius: 50%; display: block; stroke-width: 6; stroke: #27ae60; stroke-miterlimit: 10; margin: 0 auto 20px; box-shadow: inset 0px 0px 0px #27ae60; animation: fillCheckmark 0.6s ease-in-out 0.6s forwards, scaleCheckmark 0.5s ease-in-out 1.2s both; } /* Renamed animations */
-      .checkmark__circle { stroke-dasharray: 166; stroke-dashoffset: 166; stroke-width: 6; stroke-miterlimit: 10; stroke: #27ae60; fill: none; animation: strokeCheckmark 0.8s cubic-bezier(0.65, 0, 0.45, 1) forwards; } /* Renamed animation */
-      .checkmark__check { transform-origin: 50% 50%; stroke-dasharray: 58; stroke-dashoffset: 58; animation: strokeCheckmark 0.4s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards; } /* Renamed animation */
+      .checkmark { width: 100px; height: 100px; border-radius: 50%; display: block; stroke-width: 6; stroke: #27ae60; stroke-miterlimit: 10; margin: 0 auto 20px; box-shadow: inset 0px 0px 0px #27ae60; animation: fillCheckmark 0.6s ease-in-out 0.6s forwards, scaleCheckmark 0.5s ease-in-out 1.2s both; } 
+      .checkmark__circle { stroke-dasharray: 166; stroke-dashoffset: 166; stroke-width: 6; stroke-miterlimit: 10; stroke: #27ae60; fill: none; animation: strokeCheckmark 0.8s cubic-bezier(0.65, 0, 0.45, 1) forwards; } 
+      .checkmark__check { transform-origin: 50% 50%; stroke-dasharray: 58; stroke-dashoffset: 58; animation: strokeCheckmark 0.4s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards; } 
       .success-message { color: #27ae60; font-weight: 700; margin-top: 20px; text-align: center; font-size: 22px; opacity: 0; animation: fadeInSuccessMsg 0.5s ease-in-out 1.4s forwards; }
       
-      @keyframes strokeCheckmark { 100% { stroke-dashoffset: 0; } } /* Renamed */
-      @keyframes scaleCheckmark { 0%, 100% { transform: none; } 50% { transform: scale3d(1.1, 1.1, 1); } } /* Renamed */
-      @keyframes fillCheckmark { 100% { box-shadow: inset 0px 0px 0px 50px rgba(39, 174, 96, 0); } } /* Renamed */
+      @keyframes strokeCheckmark { 100% { stroke-dashoffset: 0; } } 
+      @keyframes scaleCheckmark { 0%, 100% { transform: none; } 50% { transform: scale3d(1.1, 1.1, 1); } } 
+      @keyframes fillCheckmark { 100% { box-shadow: inset 0px 0px 0px 50px rgba(39, 174, 96, 0); } } 
       @keyframes fadeInSuccess { from { opacity: 0; } to { opacity: 1; } }
       @keyframes fadeInSuccessMsg { from { opacity: 0; } to { opacity: 1; } }
 
@@ -324,12 +329,14 @@
     </style>
   </head>
 <body>
+  <!-- মিম ওভারলে -->
   <div class="meme-overlay" id="memeOverlay">
     <img src="meme.jpg" alt="লোডিং... (রিফ্রেশ প্লিজ)" class="meme-image">
     <button class="close-btn" onclick="closeMeme()">X</button>
   </div>
 
-  <div id="mainContent" style="display:none;" class="px-4 py-6">
+  <!-- আপনার মূল কন্টেন্ট (লোডিং শেষে দেখা যাবে) -->
+  <div id="mainContent" class="px-4 py-6">
 
     <!-- Download Suggestions Banner Start -->
     <div id="downloadSuggestionsBannerContainer" class="mx-auto max-w-xl px-2 sm:px-0 mb-4 cursor-pointer">
@@ -346,7 +353,7 @@
     </div>
     <!-- Download Suggestions Banner End -->
 
-    <!-- Top Performers Banner (Redesigned) Start -->
+    <!-- Top Performers Banner Start -->
     <div class="mx-auto max-w-xl px-2 sm:px-0 my-6">
         <div class="bg-black/30 backdrop-blur-sm rounded-lg border border-emerald-500/50 shadow-lg p-3 sm:p-4">
             <div class="text-center mb-3 pb-2 border-b border-emerald-600/40">
@@ -357,17 +364,14 @@
                 </h3>
             </div>
             <div class="grid grid-cols-3 gap-2 sm:gap-3">
-                <!-- 1st Place -->
                 <div class="performer-card bg-gradient-to-br from-yellow-400/80 to-yellow-600/90 p-2.5 rounded-lg text-center flex flex-col items-center justify-center min-h-[70px] sm:min-h-[80px] transition-all duration-300 hover:shadow-yellow-400/40 hover:shadow-lg hover:scale-105">
                     <div class="text-xs sm:text-sm font-extrabold text-black leading-tight truncate w-full">Studying</div>
                     <div class="text-[0.7rem] sm:text-xs font-bold text-yellow-900 mt-1">🥇 69.5h</div>
                 </div>
-                <!-- 2nd Place -->
                 <div class="performer-card bg-gradient-to-br from-gray-300/80 to-gray-500/90 p-2.5 rounded-lg text-center flex flex-col items-center justify-center min-h-[70px] sm:min-h-[80px] transition-all duration-300 hover:shadow-gray-400/40 hover:shadow-lg hover:scale-105">
                     <div class="text-xs sm:text-sm font-extrabold text-black leading-tight truncate w-full">Moho</div>
                     <div class="text-[0.7rem] sm:text-xs font-bold text-gray-800 mt-1">🥈 65.5h</div>
                 </div>
-                <!-- 3rd Place -->
                 <div class="performer-card bg-gradient-to-br from-amber-600/80 to-amber-700/90 p-2.5 rounded-lg text-center flex flex-col items-center justify-center min-h-[70px] sm:min-h-[80px] transition-all duration-300 hover:shadow-amber-500/40 hover:shadow-lg hover:scale-105">
                     <div class="text-xs sm:text-sm font-extrabold text-white leading-tight truncate w-full">Jannatul Maria</div>
                     <div class="text-[0.7rem] sm:text-xs font-bold text-amber-100 mt-1">🥉 59.3h</div>
@@ -375,21 +379,41 @@
             </div>
         </div>
     </div>
-    <!-- Top Performers Banner (Redesigned) End -->
+    <!-- Top Performers Banner End -->
 
     <div id="root"></div>
   </div>
 
   <script>
+    // মিম দেখানোর কোড
+    const memeOverlay = document.getElementById('memeOverlay');
+    const mainContent = document.getElementById('mainContent');
+
+    // 5 সেকেন্ড পর মিম হাইড করবে
     setTimeout(() => {
-      document.getElementById('memeOverlay').style.display = 'none';
-      document.getElementById('mainContent').style.display = 'block';
+      if (memeOverlay.style.display !== 'none') { // Check if not already closed by button
+        closeMeme();
+      }
     }, 5000);
 
+    // ম্যানুয়ালি বন্ধ করার অপশন
     function closeMeme() {
-      document.getElementById('memeOverlay').style.display = 'none';
-      document.getElementById('mainContent').style.display = 'block';
+      memeOverlay.style.display = 'none';
+      mainContent.style.display = 'block'; // Show main content
+      // Trigger body animation again if needed, or ensure it runs after content is visible
+      document.body.style.opacity = '0'; // Reset for animation
+      document.body.style.animation = 'none'; // Remove previous animation
+      requestAnimationFrame(() => { // Ensure repaint before starting new animation
+          document.body.style.animation = 'fadeInBody 0.8s ease-out forwards';
+      });
     }
+    // Ensure body is not animated until meme is closed or timeout
+    document.body.style.animation = 'none'; 
+    document.body.style.opacity = '1'; // Make body visible if meme is not covering it
+                                       // but it will be covered by memeOverlay anyway.
+                                       // The main content will get animated via fadeInBody
+                                       // when closeMeme() is called.
+
   </script>
 
     <script>
@@ -402,12 +426,13 @@
       }
 
     const downloadableNotes = [
-        { title: "বাংলা ফাইনাল সাজেশন (তানভীর ভাইয়া)", fileName: "বাংলা কারেন্ট সাজেশন (তানভীর ভাইয়া).pdf", type: "সাজেশন" },
+        // *** আপনার ফাইলের আসল নাম এখানে দিন, URL এনকোডিং JavaScript করবে ***
+        { title: "বাংলা ১ম পত্র সাজেশন (HSC 25)", fileName: "বাংলা কারেন্ট সাজেশন (তানভীর ভাইয়া).pdf", type: "সাজেশন" },
+        { title: "পদার্থবিজ্ঞান ১ম পত্র: ভৌত রাশি ও পরিমাপ (পূর্ণাঙ্গ নোট)", fileName: "physics_chapter_1_full.pdf", type: "নোট" },
         { title: "রসায়ন ২য় পত্র: জৈব যৌগ (সংক্ষিপ্ত সাজেশন)", fileName: "chemistry_organic_short_suggestion.pdf", type: "সাজেশন" },
-        { title: "উচ্চতর গণিত: জটিল সংখ্যা (অনুশীলনী সমাধান)", fileName: "math_complex_numbers_solutions.pdf", type: "সমাধান" },
         // example: { title: "নতুন নোটের নাম", fileName: "new_note.pdf", type: "নোট" },
     ];
-    const notesFolderPath = 'files/'; // *** পরিবর্তিত ফোল্ডারের নাম ***
+    const notesFolderPath = ''; // *** রুট ডিরেক্টরি থেকে ফাইল লোড করার জন্য খালি রাখুন ***
 
     function renderNotesList() {
         const listContainer = document.getElementById('downloadSuggestionsList');
@@ -422,12 +447,17 @@
             let typeBadgeColor = 'bg-sky-500'; 
             if (note.type === 'সাজেশন') typeBadgeColor = 'bg-yellow-500';
             else if (note.type === 'সমাধান') typeBadgeColor = 'bg-purple-500';
+
+            // URL এনকোডিং করা হচ্ছে ফাইলের নামের জন্য href এ
+            const encodedFileName = encodeURIComponent(note.fileName);
+
             noteItem.innerHTML = `
                 <div class="flex-grow mr-3">
                     <span class="text-sm font-medium text-emerald-100">${note.title}</span>
                     <span class="ml-2 text-xs text-white px-1.5 py-0.5 rounded ${typeBadgeColor}">${note.type}</span>
                 </div>
-                <a href="${notesFolderPath}${note.fileName}" download="${note.fileName}" class="flex-shrink-0 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold py-1.5 px-3 rounded-md transition-colors duration-300 flex items-center">
+                <a href="${notesFolderPath}${encodedFileName}" download="${note.fileName}" 
+                   class="flex-shrink-0 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold py-1.5 px-3 rounded-md transition-colors duration-300 flex items-center">
                     <i class="fas fa-download mr-1.5"></i> ডাউনলোড
                 </a>`;
             listContainer.appendChild(noteItem);
@@ -435,14 +465,19 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+        // মিম দেখানোর জন্য mainContent প্রাথমিকভাবে হাইড করা আছে, তাই DOMContentLoaded এ রেন্ডার করা নিরাপদ
         renderNotesList(); 
         const bannerContainer = document.getElementById('downloadSuggestionsBannerContainer');
         const listContainer = document.getElementById('downloadSuggestionsList');
         const toggleIcon = document.getElementById('suggestionToggleIcon');
-        bannerContainer.addEventListener('click', () => {
-            const isHidden = listContainer.classList.toggle('hidden');
-            toggleIcon.classList.toggle('rotate-180', !isHidden);
-        });
+        if (bannerContainer && listContainer && toggleIcon) { // Check if elements exist
+            bannerContainer.addEventListener('click', () => {
+                const isHidden = listContainer.classList.toggle('hidden');
+                toggleIcon.classList.toggle('rotate-180', !isHidden);
+            });
+        } else {
+            console.error("Download suggestion banner elements not found.");
+        }
     });
     </script>
 
@@ -592,7 +627,7 @@ const StreakDashboard = () => {
   const diffTime = targetDate.getTime() - today.getTime();
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   const daysLeft = Math.max(0, diffDays); 
-  const motivation = "⚡ ৫ জুন বৃহস্পতিবারঃ বাংলা ২য় পত্র; সকাল ১০ টা ";
+  const motivation = "⚡ চলছে 100_HOURS চ্যালেঞ্জ! প্রতি শনি-শুক্র;";
 
   return (
     <div className="max-w-7xl mx-auto space-y-8 pt-0">
@@ -661,7 +696,7 @@ const StreakDashboard = () => {
           <li><strong>এডমিন ম্যাসেজ:</strong> এটা সারপ্রাইজ, মাঝে মাঝেই নিউ ম্যাসেজ পাবে।</li>
           <li><strong>প্রোগ্রেস যুক্ত করো:</strong> "Add Your Progress" বাটনে ক্লিক করে ফর্ম পূরণ করো (নাম, ঘণ্টা, ইত্যাদি)। সাবমিট করলেই ড্যাশবোর্ড আপডেট হবে।</li>
           <li><strong>ম্যাসেজ ফর এডমিন:</strong> চাইলে যে কিছু এডমিনকে জানাতে ফর্মের এই অপশন বেবহার করতে পারো এটা অপশনাল। চাইলে মোটিভেশনও দিতে পারো (অগ্রিম থ্যাংকস)।</li>
-          <li><strong>নোট ও সাজেশন:</strong> পেইজের উপরের দিকে "গুরুত্বপূর্ণ নোট ও সাজেশন" ব্যানারে ক্লিক করে প্রয়োজনীয় নোট এবং সাজেশন ডাউনলোড করতে পারবে।</li>
+          <li><strong>নোট ও সাজেশন:</strong> পেইজের উপরের দিকে "গুরুত্বপূর্ণ নোট ও সাজেশন" ব্যানারে ক্লিক করে প্রয়োজনীয় নোট এবং সাজেশন ডাউনলোড করতে পারবে। ফাইলগুলো আপনার দেওয়া আসল নামেই ডাউনলোড হবে।</li>
         </ol>
         <p className="mt-6 text-green-400 italic text-center">🌙 "তোমার প্রতিপালক তোমাকে পরিত্যাগ করেননি এবং তোমার প্রতি নারাজও হননি। নিশ্চয়ই পরবর্তী সময় তোমার পক্ষে পূর্বের সময় অপেক্ষা শ্রেয়। অচিরেই তোমার প্রতিপালক তোমাকে এত দেবেন যে, তুমি খুশী হয়ে যাবে" — (সুরা: আদ্ব-দ্বোহা, আয়াত: ৩-৫)</p>
       </div>
