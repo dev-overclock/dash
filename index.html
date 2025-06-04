@@ -17,8 +17,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Overclock</title>
-    <!-- ফেভিকন সেট করার জন্য নিচের লাইনটি যোগ করো -->
-    <!-- আপনার favicon.png ফাইলটিকে রুট ফোল্ডারে রাখুন -->
     <link rel="icon" type="image/png" href="schedule.png" />
 
 
@@ -30,215 +28,129 @@
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
-   /* নতুন স্টাইল যোগ করুন */
-th:nth-child(2),
-td:nth-child(2) {
-  min-width: 150px !important; /* ডেস্কটাপের জন্য মিনিমাম প্রস্থ */
-  width: 30% !important; /* প্রস্থের পার্সেন্টেজ নির্ধারণ */
-}
+      /* নতুন স্টাইল যোগ করুন */
+      th:nth-child(2),
+      td:nth-child(2) {
+        min-width: 150px !important; /* ডেস্কটাপের জন্য মিনিমাম প্রস্থ */
+        width: 30% !important; /* প্রস্থের পার্সেন্টেজ নির্ধারণ */
+      }
 
-/* মোবাইল ডিভাইসের জন্য মিডিয়া কুয়েরি */
-@media (max-width: 768px) {
-  th:nth-child(2),
-  td:nth-child(2) {
-    min-width: 150px !important; /* মোবাইলের জন্য কম প্রস্থ */
-    width: 35% !important; /* মোবাইলে বেশি জায়গা নেবে */
-  }
-}
+      /* মোবাইল ডিভাইসের জন্য মিডিয়া কুয়েরি */
+      @media (max-width: 768px) {
+        th:nth-child(2),
+        td:nth-child(2) {
+          min-width: 150px !important; /* মোবাইলের জন্য কম প্রস্থ */
+          width: 35% !important; /* মোবাইলে বেশি জায়গা নেবে */
+        }
+      }
 
-/* মিম ডিসপ্লে স্টাইল */
-    .meme-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.9);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 10000;
-    }
+      /* মিম ডিসপ্লে স্টাইল */
+      .meme-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+      }
 
-    .meme-image {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 8px;
-      box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
-    }
+      .meme-image {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+      }
 
-    .close-btn {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: #10b981;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+      .close-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: #10b981;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+      }
 
-/* মোবাইল ডিভাইসে টেবিল হেডার স্টাইল */
-/* এই স্টাইলগুলো আগের টেবিলের জন্য ছিল, নতুন ব্যানার স্ট্রাকচারের জন্য প্রয়োজন নেই */
-/* @media (max-width: 768px) {
-  th {
-    white-space: nowrap;
-    padding: 8px 10px;
-    font-size: 0.7rem;
-  }
+      /* মোবাইল অপ্টিমাইজেশন */
+      @media (max-width: 640px) {
+        .modal-content {
+          width: 95%;
+          padding: 15px;
+        }
+        .bengali-form h2 {
+          font-size: 1.8rem;
+        }
+        .form-button {
+          padding: 10px 16px;
+          font-size: 14px;
+        }
+      }
 
-  th i.fas {
-    display: inline-block;
-    margin-right: 2px;
-    vertical-align: middle;
-  }
+      /* ট্যাবলেট ভিউ */
+      @media (min-width: 641px) and (max-width: 1024px) {
+        .modal-content {
+          width: 85%;
+        }
+      }
 
-  th span {
-    display: inline-block;
-    vertical-align: middle;
-  }
+      /* টেবিল স্টাইল (মূল ড্যাশবোর্ডের জন্য) */
+      table {
+        border-collapse: separate;
+        border-spacing: 0;
+        min-width: 100%;
+      }
 
-    td {
-        padding: 8px 10px;
-        font-size: 0.85rem;
-    }
-} */
+      th {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: blur(8px);
+        background: rgba(6, 78, 59, 0.8); 
+      }
 
+      th, td {
+        padding: 12px 16px;
+        text-align: left;
+        border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+      }
 
-/* মোবাইল অপ্টিমাইজেশন */
-@media (max-width: 640px) {
-  .modal-content {
-    width: 95%;
-    padding: 15px;
-  }
+      tr {
+        transition: all 0.2s ease;
+        opacity: 0;
+        animation: fadeInRow 0.5s ease forwards; /* Renamed to avoid conflict */
+      }
 
-  .bengali-form h2 {
-    font-size: 1.8rem;
-  }
+      @keyframes fadeInRow { /* Renamed */
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      .table-icon {
+        font-size: 0.9rem;
+        margin-right: 8px;
+        width: 16px;
+        text-align: center;
+        color: rgba(110, 231, 183, 0.8);
+      }
 
-  .form-button {
-    padding: 10px 16px;
-    font-size: 14px;
-  }
-
-  /* টেবিল স্টাইলগুলো আগের টেবিলের জন্য */
-  /*
-  table {
-    font-size: 0.85rem;
-  }
-
-  th, td {
-    padding: 8px 10px;
-  }
-  */
-}
-
-/* ট্যাবলেট ভিউ */
-@media (min-width: 641px) and (max-width: 1024px) {
-  .modal-content {
-    width: 85%;
-  }
-
-   /* টেবিল স্টাইলগুলো আগের টেবিলের জন্য */
-   /*
-  th, td {
-    padding: 10px 12px;
-  }
-   */
-}
-
-/* টেবিল স্টাইল (মূল ড্যাশবোর্ডের জন্য) */
-table {
-  border-collapse: separate;
-  border-spacing: 0;
-  min-width: 100%;
-}
-
-th {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  backdrop-filter: blur(8px);
-  background: rgba(6, 78, 59, 0.8); /* থেম কালারের সাথে সামঞ্জস্যপূর্ণ */
-}
-
-th, td {
-  padding: 12px 16px;
-  text-align: left;
-  border-bottom: 1px solid rgba(16, 185, 129, 0.2);
-}
-
-/* Replace the existing tr animation with this */
-tr {
-  transition: all 0.2s ease;
-  opacity: 0;
-  animation: fadeIn 0.5s ease forwards;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* র‍্যাঙ্ক বাজ স্টাইল */
-.rank-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  font-weight: bold;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
-
-/* প্রোগ্রেস বার স্টাইল (যদি ফর্মে থাকে) */
-.progress-container {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-.progress-bar {
-  flex-grow: 1;
-  height: 6px;
-  background-color: rgba(6, 78, 59, 0.5);
-  border-radius: 3px;
-  overflow: hidden;
-  margin-right: 8px;
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-}
-
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(to right, #34d399, #10b981);
-  border-radius: 3px;
-  box-shadow: 0 1px 3px rgba(52, 211, 153, 0.3);
-}
-
-/* আইকন স্টাইল (মূল ড্যাশবোর্ডের জন্য) */
-.table-icon {
-  font-size: 0.9rem;
-  margin-right: 8px;
-  width: 16px;
-  text-align: center;
-  color: rgba(110, 231, 183, 0.8);
-}
-
-/* মোবাইল ভিউ (মূল ড্যাশবোর্ডের জন্য) */
-@media (max-width: 768px) {
-  th, td {
-    padding: 10px 12px;
-  }
-
-  .table-icon {
-    margin-right: 6px;
-    font-size: 0.8rem;
-  }
-}      /* Entry Animation */
-      @keyframes fadeIn {
+      @media (max-width: 768px) {
+        th, td {
+          padding: 10px 12px;
+        }
+        .table-icon {
+          margin-right: 6px;
+          font-size: 0.8rem;
+        }
+      }     
+      
+      @keyframes fadeInBody { 
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
       }
@@ -250,8 +162,8 @@ tr {
         overflow-x: hidden;
         margin: 0;
         opacity: 0;
-        animation: fadeIn 0.8s ease-out forwards;
-        font-family: 'Hind Siliguri', sans-serif; /* Added Bengali font to body */
+        animation: fadeInBody 0.8s ease-out forwards; 
+        font-family: 'Hind Siliguri', sans-serif; 
       }
 
       .modal-overlay {
@@ -266,19 +178,19 @@ tr {
         align-items: center;
         z-index: 1000;
         opacity: 0;
-        animation: fadeIn 0.3s forwards;
+        animation: fadeInModal 0.3s forwards; 
       }
 
       .modal-overlay.closing {
-        animation: fadeOut 0.3s forwards;
+        animation: fadeOutModal 0.3s forwards; 
       }
 
-      @keyframes fadeIn {
+      @keyframes fadeInModal { 
         from { opacity: 0; }
         to { opacity: 1; }
       }
 
-      @keyframes fadeOut {
+      @keyframes fadeOutModal { 
         from { opacity: 1; }
         to { opacity: 0; }
       }
@@ -358,24 +270,6 @@ tr {
         box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
       }
 
-      .flag {
-        position: absolute;
-        top: 10px;
-        left: -30px;
-        background: linear-gradient(to bottom, #ffd700, #ffcc00);
-        color: black;
-        font-weight: bold;
-        font-size: 16px;
-        padding: 8px 16px;
-        transform: rotate(-10deg);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-        clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
-        z-index: 10;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-      }
-
       .loading-bar {
         width: 150px;
         height: 8px;
@@ -396,428 +290,165 @@ tr {
       }
 
       @keyframes loading {
-        0% {
-          left: -40%;
-        }
-        50% {
-          left: 100%;
-        }
-        100% {
-          left: -40%;
-        }
-      }
-
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+        0% { left: -40%; }
+        50% { left: 100%; }
+        100% { left: -40%; }
       }
 
       /* Custom Bengali Form Styles */
-      .bengali-form {
-        font-family: 'Hind Siliguri', sans-serif;
-        color: white;
-      }
-
-      .bengali-form h2 {
-        font-size: 24px;
-        font-weight: 700;
-        margin-bottom: 20px;
-        color: #8e44ad;
-        text-align: center;
-      }
-
-      .bengali-form .form-group {
-        margin-bottom: 20px;
-      }
-
-      .bengali-form label {
-        display: block;
-        margin-bottom: 8px;
-        font-size: 16px;
-        font-weight: 600;
-        color: #ecf0f1;
-      }
-
-      .bengali-form .required:after {
-        content: " *";
-        color: #e74c3c;
-      }
-
-      .bengali-form input,
-      .bengali-form select,
-      .bengali-form textarea {
-        width: 100%;
-        padding: 12px 15px;
-        border: 2px solid #34495e;
-        border-radius: 8px;
-        background-color: rgba(52, 73, 94, 0.5);
-        color: white;
-        font-size: 16px;
-        font-family: 'Hind Siliguri', sans-serif;
-        transition: all 0.3s;
-      }
-
-      .bengali-form input:focus,
-      .bengali-form select:focus {
-        outline: none;
-        border-color: #8e44ad;
-        background-color: rgba(52, 73, 94, 0.8);
-        box-shadow: 0 0 0 3px rgba(142, 68, 173, 0.3);
-      }
-
-      .bengali-form button[type="submit"] {
-        background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
-        color: white;
-        padding: 16px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 18px;
-        font-weight: 600;
-        width: 100%;
-        transition: all 0.3s;
-        margin-top: 20px;
-        font-family: 'Hind Siliguri', sans-serif;
-      }
-
-      .bengali-form button[type="submit"]:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-      }
-
-      .bengali-form .progress-container {
-        margin: 25px 0;
-      }
-
-      .bengali-form .progress-bar {
-        height: 12px;
-        background-color: #34495e;
-        border-radius: 6px;
-        overflow: hidden;
-        margin-bottom: 5px;
-      }
-
-      .bengali-form .progress-fill {
-        height: 100%;
-        background: linear-gradient(90deg, #8e44ad, #9b59b6);
-        border-radius: 6px;
-        transition: width 0.4s ease;
-        width: 0%;
-      }
-
-      .bengali-form .progress-value {
-        text-align: center;
-        font-size: 24px;
-        font-weight: 700;
-        color: #8e44ad;
-        margin-top: 10px;
-      }
-
-      .bengali-form input[type=range] {
-        -webkit-appearance: none;
-        width: 100%;
-        height: 15px;
-        background: #34495e;
-        border-radius: 8px;
-        margin-top: 20px;
-      }
-
-      .bengali-form input[type=range]::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        height: 25px;
-        width: 25px;
-        border-radius: 50%;
-        background: #8e44ad;
-        cursor: pointer;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        transition: all 0.3s;
-      }
-
-      .bengali-form input[type=range]::-webkit-slider-thumb:hover {
-        transform: scale(1.1);
-        box-shadow: 0 3px 8px rgba(0,0,0,0.3);
-      }
-
+      .bengali-form { font-family: 'Hind Siliguri', sans-serif; color: white; }
+      .bengali-form h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1.5rem; color: #8e44ad; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+      .bengali-form .form-group { margin-bottom: 20px; }
+      .bengali-form label { display: block; margin-bottom: 8px; font-size: 16px; font-weight: 600; color: #ecf0f1; }
+      .bengali-form .required:after { content: " *"; color: #e74c3c; }
+      .bengali-form input, .bengali-form select, .bengali-form textarea { width: 100%; padding: 12px 15px; border: 2px solid #34495e; border-radius: 8px; background-color: rgba(52, 73, 94, 0.5); color: white; font-size: 16px; font-family: 'Hind Siliguri', sans-serif; transition: all 0.3s; }
+      .bengali-form input:focus, .bengali-form select:focus, .bengali-form textarea:focus { outline: none; border-color: #8e44ad; background-color: rgba(52, 73, 94, 0.8); box-shadow: 0 0 0 3px rgba(142, 68, 173, 0.3); }
+      .bengali-form button[type="submit"] { background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%); color: white; padding: 16px; border: none; border-radius: 8px; cursor: pointer; font-size: 18px; font-weight: 600; width: 100%; transition: all 0.3s; margin-top: 20px; font-family: 'Hind Siliguri', sans-serif; }
+      .bengali-form button[type="submit"]:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.2); }
+      
       /* Success Animation */
-      .success-animation {
-        display: none;
-        text-align: center;
-        margin-top: 20px;
-        animation: fadeIn 0.5s ease-in-out;
-      }
+      .success-animation { display: none; text-align: center; margin-top: 20px; animation: fadeInSuccess 0.5s ease-in-out; }
+      .checkmark { width: 100px; height: 100px; border-radius: 50%; display: block; stroke-width: 6; stroke: #27ae60; stroke-miterlimit: 10; margin: 0 auto 20px; box-shadow: inset 0px 0px 0px #27ae60; animation: fillCheckmark 0.6s ease-in-out 0.6s forwards, scaleCheckmark 0.5s ease-in-out 1.2s both; } /* Renamed animations */
+      .checkmark__circle { stroke-dasharray: 166; stroke-dashoffset: 166; stroke-width: 6; stroke-miterlimit: 10; stroke: #27ae60; fill: none; animation: strokeCheckmark 0.8s cubic-bezier(0.65, 0, 0.45, 1) forwards; } /* Renamed animation */
+      .checkmark__check { transform-origin: 50% 50%; stroke-dasharray: 58; stroke-dashoffset: 58; animation: strokeCheckmark 0.4s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards; } /* Renamed animation */
+      .success-message { color: #27ae60; font-weight: 700; margin-top: 20px; text-align: center; font-size: 22px; opacity: 0; animation: fadeInSuccessMsg 0.5s ease-in-out 1.4s forwards; }
+      
+      @keyframes strokeCheckmark { 100% { stroke-dashoffset: 0; } } /* Renamed */
+      @keyframes scaleCheckmark { 0%, 100% { transform: none; } 50% { transform: scale3d(1.1, 1.1, 1); } } /* Renamed */
+      @keyframes fillCheckmark { 100% { box-shadow: inset 0px 0px 0px 50px rgba(39, 174, 96, 0); } } /* Renamed */
+      @keyframes fadeInSuccess { from { opacity: 0; } to { opacity: 1; } }
+      @keyframes fadeInSuccessMsg { from { opacity: 0; } to { opacity: 1; } }
 
-      .checkmark {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        display: block;
-        stroke-width: 6;
-        stroke: #27ae60;
-        stroke-miterlimit: 10;
-        margin: 0 auto 20px;
-        box-shadow: inset 0px 0px 0px #27ae60;
-        animation: fill 0.6s ease-in-out 0.6s forwards, scale 0.5s ease-in-out 1.2s both;
-      }
-
-      .checkmark__circle {
-        stroke-dasharray: 166;
-        stroke-dashoffset: 166;
-        stroke-width: 6;
-        stroke-miterlimit: 10;
-        stroke: #27ae60;
-        fill: none;
-        animation: stroke 0.8s cubic-bezier(0.65, 0, 0.45, 1) forwards;
-      }
-
-      .checkmark__check {
-        transform-origin: 50% 50%;
-        stroke-dasharray: 58;
-        stroke-dashoffset: 58;
-        animation: stroke 0.4s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
-      }
-
-      .success-message {
-        color: #27ae60;
-        font-weight: 700;
-        margin-top: 20px;
-        text-align: center;
-        font-size: 22px;
-        opacity: 0;
-        animation: fadeIn 0.5s ease-in-out 1.4s forwards;
-      }
-
-      @keyframes stroke {
-        100% {
-          stroke-dashoffset: 0;
-        }
-      }
-
-      @keyframes scale {
-        0%, 100% {
-          transform: none;
-        }
-        50% {
-          transform: scale3d(1.1, 1.1, 1);
-        }
-      }
-
-      @keyframes fill {
-        100% {
-          box-shadow: inset 0px 0px 0px 50px rgba(39, 174, 96, 0);
-        }
-      }
-
-      /* Swing animation */
-      @keyframes bounce {
-        0%, 20%, 50%, 80%, 100% {
-          transform: translateY(0);
-        }
-        40% {
-          transform: translateY(-10px);
-        }
-        60% {
-          transform: translateY(-5px);
-        }
-      }
-
-      .animate-bounce {
-        animation: bounce 2s ease infinite;
-      }
-
-      /* Update the h2 style in bengali-form */
-      .bengali-form h2 {
-        font-size: 2.5rem; /* 40px */
-        font-weight: 700;
-        margin-bottom: 1.5rem; /* 24px */
-        color: #8e44ad;
-        text-align: center;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-      }
-
-      /* Card hover animation (মূল ড্যাশবোর্ডের ইউজার কার্ডের জন্য) */
-      /*
-      .user-card {
-        transition: all 0.3s ease;
-      }
-
-      .user-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 255, 128, 0.2);
-      }
-      */
-
-
-
+      @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-10px); } 60% { transform: translateY(-5px); } }
+      .animate-bounce { animation: bounce 2s ease infinite; }
     </style>
   </head>
 <body>
-  <!-- মিম ওভারলে -->
   <div class="meme-overlay" id="memeOverlay">
-    <!-- Ensure 'meme.png' is in your root folder -->
     <img src="meme.jpg" alt="লোডিং... (রিফ্রেশ প্লিজ)" class="meme-image">
     <button class="close-btn" onclick="closeMeme()">X</button>
   </div>
 
-  <!-- আপনার মূল কন্টেন্ট (লোডিং শেষে দেখা যাবে) -->
   <div id="mainContent" style="display:none;" class="px-4 py-6">
 
-    <!-- Cartoon Cat Animation Start -->
-<!-- Sleek Top Performers Banner Start -->
-<div class="sleek-banner-container mx-auto max-w-xl px-2 sm:px-0 my-6">
-    <div class="bg-black/30 backdrop-blur-sm rounded-xl border border-green-700/50 shadow-lg p-2 sm:p-2.5">
-        <!-- Header inside the main banner box -->
-        <div class="text-center mb-2 sm:mb-2.5 pb-1.5 sm:pb-2 border-b border-green-600/50">
-            <h3 class="inline-block text-xs sm:text-sm font-bold text-emerald-100 uppercase tracking-wider">
-                <i class="fas fa-medal text-yellow-400"></i>
-                গত সপ্তাহের সেরা পারফর্মার
-                <i class="fas fa-medal text-yellow-400"></i>
-            </h3>
+    <!-- Download Suggestions Banner Start -->
+    <div id="downloadSuggestionsBannerContainer" class="mx-auto max-w-xl px-2 sm:px-0 mb-4 cursor-pointer">
+        <div class="bg-emerald-700/70 hover:bg-emerald-600/80 backdrop-blur-sm rounded-lg border border-emerald-500/50 shadow-lg p-2 sm:p-2.5 text-center transition-all duration-300">
+            <h4 class="text-sm sm:text-base font-semibold text-white">
+                <i class="fas fa-book-open mr-2"></i>
+                গুরুত্বপূর্ণ নোট ও সাজেশন
+                <i id="suggestionToggleIcon" class="fas fa-chevron-down ml-2 transition-transform duration-300"></i>
+            </h4>
         </div>
+    </div>
+    <div id="downloadSuggestionsList" class="mx-auto max-w-xl px-2 sm:px-0 mb-6 hidden">
+        <!-- Note items will be injected here by JavaScript -->
+    </div>
+    <!-- Download Suggestions Banner End -->
 
-        <!-- Performers Grid -->
-        <div class="grid grid-cols-3 gap-1.5 sm:gap-2">
-            <!-- 1st Place -->
-            <div class="performer-card bg-gradient-to-b from-yellow-500/80 to-yellow-600/90 p-2 rounded-lg text-center flex flex-col items-center justify-center min-h-[65px] sm:min-h-[75px] transition-all duration-300 hover:shadow-yellow-400/30 hover:shadow-md">
-                <div class="text-xs sm:text-sm font-extrabold text-black leading-tight truncate w-full">Studying</div>
-                <div class="text-[0.65rem] sm:text-xs font-bold text-yellow-900 mt-0.5">🥇 69.5h</div>
+    <!-- Top Performers Banner (Redesigned) Start -->
+    <div class="mx-auto max-w-xl px-2 sm:px-0 my-6">
+        <div class="bg-black/30 backdrop-blur-sm rounded-lg border border-emerald-500/50 shadow-lg p-3 sm:p-4">
+            <div class="text-center mb-3 pb-2 border-b border-emerald-600/40">
+                <h3 class="inline-block text-sm sm:text-base font-bold text-emerald-200 uppercase tracking-wider">
+                    <i class="fas fa-award mr-2 text-yellow-400"></i>
+                    গত সপ্তাহের সেরা পারফর্মার
+                    <i class="fas fa-award ml-2 text-yellow-400"></i>
+                </h3>
             </div>
-
-            <!-- 2nd Place -->
-            <div class="performer-card bg-gradient-to-b from-gray-400/80 to-gray-500/90 p-2 rounded-lg text-center flex flex-col items-center justify-center min-h-[65px] sm:min-h-[75px] transition-all duration-300 hover:shadow-gray-400/30 hover:shadow-md">
-                <div class="text-xs sm:text-sm font-extrabold text-black leading-tight truncate w-full">Moho</div>
-                <div class="text-[0.65rem] sm:text-xs font-bold text-gray-800 mt-0.5">🥈 65.5h</div>
-            </div>
-
-            <!-- 3rd Place -->
-            <div class="performer-card bg-gradient-to-b from-amber-600/80 to-amber-700/90 p-2 rounded-lg text-center flex flex-col items-center justify-center min-h-[65px] sm:min-h-[75px] transition-all duration-300 hover:shadow-amber-500/30 hover:shadow-md">
-                <div class="text-xs sm:text-sm font-extrabold text-white leading-tight truncate w-full">Jannatul Maria</div>
-                <div class="text-[0.65rem] sm:text-xs font-bold text-amber-100 mt-0.5">🥉 59.3h</div>
+            <div class="grid grid-cols-3 gap-2 sm:gap-3">
+                <!-- 1st Place -->
+                <div class="performer-card bg-gradient-to-br from-yellow-400/80 to-yellow-600/90 p-2.5 rounded-lg text-center flex flex-col items-center justify-center min-h-[70px] sm:min-h-[80px] transition-all duration-300 hover:shadow-yellow-400/40 hover:shadow-lg hover:scale-105">
+                    <div class="text-xs sm:text-sm font-extrabold text-black leading-tight truncate w-full">Studying</div>
+                    <div class="text-[0.7rem] sm:text-xs font-bold text-yellow-900 mt-1">🥇 69.5h</div>
+                </div>
+                <!-- 2nd Place -->
+                <div class="performer-card bg-gradient-to-br from-gray-300/80 to-gray-500/90 p-2.5 rounded-lg text-center flex flex-col items-center justify-center min-h-[70px] sm:min-h-[80px] transition-all duration-300 hover:shadow-gray-400/40 hover:shadow-lg hover:scale-105">
+                    <div class="text-xs sm:text-sm font-extrabold text-black leading-tight truncate w-full">Moho</div>
+                    <div class="text-[0.7rem] sm:text-xs font-bold text-gray-800 mt-1">🥈 65.5h</div>
+                </div>
+                <!-- 3rd Place -->
+                <div class="performer-card bg-gradient-to-br from-amber-600/80 to-amber-700/90 p-2.5 rounded-lg text-center flex flex-col items-center justify-center min-h-[70px] sm:min-h-[80px] transition-all duration-300 hover:shadow-amber-500/40 hover:shadow-lg hover:scale-105">
+                    <div class="text-xs sm:text-sm font-extrabold text-white leading-tight truncate w-full">Jannatul Maria</div>
+                    <div class="text-[0.7rem] sm:text-xs font-bold text-amber-100 mt-1">🥉 59.3h</div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Sleek Top Performers Banner End -->
-    <!-- Cartoon Cat Animation End -->
-
-    <!-- Routine Section Start -->
-    <!-- এই সেকশনটি ৯ দিন পর নিরাপদে মুছে ফেলতে পারেন -->
-    <!-- Routine Section commented out as requested -->
-    <!--
-    <div id="routineSection" class="routine-banner-container">
-        <h2 class="text-lg font-bold text-green-100 text-center mb-3">
-            ৯ দিনে সিলেবাস খায়ালাম! 🎀
-        </h2>
-        <div class="routine-scroll-wrapper">
-            <div id="routineCards" class="routine-cards-flex">
-
-            </div>
-        </div>
-    </div>
-    -->
-    <!-- Routine Section End -->
+    <!-- Top Performers Banner (Redesigned) End -->
 
     <div id="root"></div>
   </div>
 
   <script>
-    // 5 সেকেন্ড পর মিম হাইড করবে (আপনার কোডের অংশ)
     setTimeout(() => {
       document.getElementById('memeOverlay').style.display = 'none';
       document.getElementById('mainContent').style.display = 'block';
     }, 5000);
 
-    // ম্যানুয়ালি বন্ধ করার অপশন (আপনার কোডের অংশ)
     function closeMeme() {
       document.getElementById('memeOverlay').style.display = 'none';
       document.getElementById('mainContent').style.display = 'block';
     }
-
-     // JavaScript for generating and highlighting the routine cards - commented out as requested
-     /*
-     document.addEventListener('DOMContentLoaded', function() {
-        const routineData = [
-            { date: '2024-05-16', dayNum: 1, subject: 'কেমেস্ট্রি + বায়োলজি' },
-            { date: '2024-05-17', dayNum: 2, subject: 'কেমেস্ট্রি + বায়োলজি' },
-            { date: '2024-05-18', dayNum: 3, subject: 'বাংলা' },
-            { date: '2024-05-19', dayNum: 4, subject: 'হায়ার মেথ + বায়োলজি' },
-            { date: '2024-05-20', dayNum: 5, subject: 'হায়ার মেথ + বায়োলজি' },
-            { date: '2024-05-21', dayNum: 6, subject: 'ইংরেজি' },
-            { date: '2024-05-22', dayNum: 7, subject: 'ফিজিক্স + বায়োলজি' },
-            { date: '2024-05-23', dayNum: 8, subject: 'ফিজিক্স + বায়োলজি' },
-            { date: '2024-05-24', dayNum: 9, subject: 'আইসিটি' },
-        ];
-
-        const routineCardsContainer = document.getElementById('routineCards');
-        const today = new Date();
-        // Normalize today's date to the start of the day for comparison
-        today.setHours(0, 0, 0, 0);
-
-        const todayString = today.getFullYear() + '-' +
-                          ('0' + (today.getMonth() + 1)).slice(-2) + '-' +
-                          ('0' + today.getDate()).slice(-2);
-
-        let currentDayCard = null;
-
-        routineData.forEach(day => {
-            const card = document.createElement('div');
-            card.classList.add('routine-card');
-            card.setAttribute('data-date', day.date);
-
-            const dateParts = day.date.split('-'); // YYYY-MM-DD
-            const monthNames = ["জানু", "ফেব্রু", "মার্চ", "এপ্রিল", "মে", "জুন", "জুলাই", "আগস্ট", "সেপ্টেম্বর", "অক্টোবর", "নভে", "ডিসে"];
-            const displayDate = monthNames[parseInt(dateParts[1], 10) - 1] + ' ' + parseInt(dateParts[2], 10); // e.g., জুন ১৬
-
-            card.innerHTML = `
-                <div class="date">${displayDate}</div>
-                <div class="day">দিন ${day.dayNum}</div>
-                <div class="subject">${day.subject}</div>
-            `;
-
-            // Compare dates by converting routine date string to Date object (start of day)
-             const routineDate = new Date(day.date);
-             routineDate.setHours(0, 0, 0, 0);
-
-            if (routineDate.getTime() === today.getTime()) {
-                card.classList.add('current-day-card');
-                currentDayCard = card; // Store reference to the current day card
-            }
-
-            routineCardsContainer.appendChild(card);
-        });
-
-        // Scroll the current day card into view
-        if (currentDayCard) {
-            // Use a small timeout to ensure layout is calculated and scrollIntoView works correctly
-             setTimeout(() => {
-                currentDayCard.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-             }, 150); // Increased timeout slightly for better reliability
-        }
-
-     });
-     */
   </script>
+
     <script>
-      // Service Worker রেজিস্ট্রেশন (আপনার কোডের অংশ)
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-              console.log('ServiceWorker registration successful');
-            })
-            .catch(err => {
-              console.log('ServiceWorker registration failed: ', err);
-            });
+            .then(registration => { console.log('ServiceWorker registration successful'); })
+            .catch(err => { console.log('ServiceWorker registration failed: ', err); });
         });
       }
+
+    const downloadableNotes = [
+        { title: "বাংলা ফাইনাল সাজেশন (তানভীর ভাইয়া)", fileName: "বাংলা কারেন্ট সাজেশন (তানভীর ভাইয়া)", type: "সাজেশন" },
+        { title: "রসায়ন ২য় পত্র: জৈব যৌগ (সংক্ষিপ্ত সাজেশন)", fileName: "chemistry_organic_short_suggestion.pdf", type: "সাজেশন" },
+        { title: "উচ্চতর গণিত: জটিল সংখ্যা (অনুশীলনী সমাধান)", fileName: "math_complex_numbers_solutions.pdf", type: "সমাধান" },
+        // example: { title: "নতুন নোটের নাম", fileName: "new_note.pdf", type: "নোট" },
+    ];
+    const notesFolderPath = 'files/'; // *** পরিবর্তিত ফোল্ডারের নাম ***
+
+    function renderNotesList() {
+        const listContainer = document.getElementById('downloadSuggestionsList');
+        listContainer.innerHTML = ''; 
+        if (downloadableNotes.length === 0) {
+            listContainer.innerHTML = `<div class="bg-black/30 backdrop-blur-sm rounded-md border border-green-700/30 p-3 text-center"><p class="text-emerald-300 text-sm">আপাতত কোনো নোট বা সাজেশন নেই। শীঘ্রই যোগ করা হবে!</p></div>`;
+            return;
+        }
+        downloadableNotes.forEach(note => {
+            const noteItem = document.createElement('div');
+            noteItem.className = 'bg-black/30 backdrop-blur-sm rounded-md border border-green-700/30 p-3 mb-2 flex justify-between items-center transition-all duration-300 hover:border-emerald-500/70 hover:bg-black/40';
+            let typeBadgeColor = 'bg-sky-500'; 
+            if (note.type === 'সাজেশন') typeBadgeColor = 'bg-yellow-500';
+            else if (note.type === 'সমাধান') typeBadgeColor = 'bg-purple-500';
+            noteItem.innerHTML = `
+                <div class="flex-grow mr-3">
+                    <span class="text-sm font-medium text-emerald-100">${note.title}</span>
+                    <span class="ml-2 text-xs text-white px-1.5 py-0.5 rounded ${typeBadgeColor}">${note.type}</span>
+                </div>
+                <a href="${notesFolderPath}${note.fileName}" download="${note.fileName}" class="flex-shrink-0 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold py-1.5 px-3 rounded-md transition-colors duration-300 flex items-center">
+                    <i class="fas fa-download mr-1.5"></i> ডাউনলোড
+                </a>`;
+            listContainer.appendChild(noteItem);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        renderNotesList(); 
+        const bannerContainer = document.getElementById('downloadSuggestionsBannerContainer');
+        const listContainer = document.getElementById('downloadSuggestionsList');
+        const toggleIcon = document.getElementById('suggestionToggleIcon');
+        bannerContainer.addEventListener('click', () => {
+            const isHidden = listContainer.classList.toggle('hidden');
+            toggleIcon.classList.toggle('rotate-180', !isHidden);
+        });
+    });
     </script>
 
-
-    <!-- Study Form Popup (আপনার কোডের অংশ) -->
     <div id="studyFormPopup" class="modal-overlay" style="display: none;">
       <div class="modal-content">
-        <button onclick="closeStudyForm()" class="close-button">
-          ×
-        </button>
+        <button onclick="closeStudyForm()" class="close-button">×</button>
         <div class="bengali-form">
           <h2 class="text-4xl font-bold text-center mb-6 animate-bounce" style="animation-iteration-count: infinite; animation-duration: 3s;">কী খবর?</h2>
           <form id="studyForm">
@@ -825,25 +456,20 @@ tr {
               <label for="name" class="required">নাম:</label>
               <input type="text" id="name" name="name" required placeholder="আপনার নাম লিখুন">
             </div>
-
             <div class="form-group">
               <label for="date" class="required">তারিখ:</label>
               <input type="date" id="date" name="date" required>
             </div>
-
             <div class="form-group">
               <label for="hours" class="required">স্টাডি করা সময় (ঘণ্টা):</label>
               <input type="number" id="hours" name="hours" step="0.1" min="0" required placeholder="কত ঘণ্টা পড়ালেখা করলেন?">
             </div>
-
-          <div class="form-group">
-  <label for="goal">ম্যাসেজ ফর এডমিন:</label>
-  <textarea id="goal" name="goal" rows="3" placeholder="এডমিনের জন্য কোনো ম্যাসেজ থাকলে লিখুন"></textarea>
-</div>
-
+            <div class="form-group">
+              <label for="goal">ম্যাসেজ ফর এডমিন:</label>
+              <textarea id="goal" name="goal" rows="3" placeholder="এডমিনের জন্য কোনো ম্যাসেজ থাকলে লিখুন"></textarea>
+            </div>
             <button type="submit" id="submitBtn">সাবমিট করুন</button>
           </form>
-
           <div class="success-animation" id="successAnimation">
             <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
               <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
@@ -856,212 +482,117 @@ tr {
     </div>
 
     <script>
-      // Set default date to today (আপনার কোডের অংশ)
       function setDefaultDate() {
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('date').value = today;
       }
-
-      // Update progress bar display (আপনার কোডের অংশ)
-      // function updateProgress(value) {
-      //   document.getElementById('progressFill').style.width = value + '%';
-      //   document.getElementById('progressValue').textContent = value + '%';
-      // }
-
-      // Initialize progress bar (আপনার কোডের অংশ)
-     //  function initProgressBar() {
-        // updateProgress(0);
-      //}
-
-      // Study Form functions (আপনার কোডের অংশ)
       function openStudyForm() {
         const popup = document.getElementById('studyFormPopup');
-        const content = document.querySelector('.modal-content');
+        const content = popup.querySelector('.modal-content');
         popup.style.display = 'flex';
         document.body.style.overflow = 'hidden';
         setDefaultDate();
-        // initProgressBar(); // Progress bar might not be needed for this simplified form
-
-        // Reset animation classes
         popup.classList.remove('closing');
         content.classList.remove('closing');
       }
-
       function closeStudyForm() {
         const popup = document.getElementById('studyFormPopup');
-        const content = document.querySelector('.modal-content');
-
-        // Add closing animation class
+        const content = popup.querySelector('.modal-content');
         popup.classList.add('closing');
         content.classList.add('closing');
-
-        // Wait for animation to finish before hiding
         setTimeout(() => {
-          document.getElementById('studyForm').reset(); // Added reset here
-          document.getElementById('studyForm').style.display = 'block'; // Ensure form is visible next time
-          document.getElementById('successAnimation').style.display = 'none'; // Hide success message
-          document.getElementById('submitBtn').disabled = false; // Enable button
-          document.getElementById('submitBtn').textContent = 'সাবমিট করুন'; // Reset button text
-          setDefaultDate(); // Set default date again
-
+          const form = document.getElementById('studyForm');
+          form.reset(); 
+          form.style.display = 'block'; 
+          document.getElementById('successAnimation').style.display = 'none'; 
+          const submitBtn = document.getElementById('submitBtn');
+          submitBtn.disabled = false; 
+          submitBtn.textContent = 'সাবমিট করুন'; 
+          setDefaultDate(); 
           popup.style.display = 'none';
           document.body.style.overflow = 'auto';
-
-          // Remove closing classes for next open
           popup.classList.remove('closing');
           content.classList.remove('closing');
         }, 300);
       }
-
-      // Close popup when clicking outside (আপনার কোডের অংশ)
       document.getElementById('studyFormPopup').addEventListener('click', function(e) {
-        if (e.target === this) {
-          closeStudyForm();
-        }
+        if (e.target === this) closeStudyForm();
       });
 
-// Handle form submission (আপনার কোডের অংশ)
-document.getElementById('studyForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-
-  const submitBtn = document.getElementById('submitBtn');
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'সাবমিট হচ্ছে...';
-
-  // Hide any previous success message
-  document.getElementById('successAnimation').style.display = 'none';
-
-  // Get current timestamp
-  const timestamp = new Date().toISOString();
-
-  // Get form values
-  const formData = {
-    timestamp: timestamp,
-    name: document.getElementById('name').value,
-    date: document.getElementById('date').value,
-    hours: parseFloat(document.getElementById('hours').value),
-    goal: document.getElementById('goal').value
-  };
-
-  // Replace with your Google Apps Script deployment URL
-  const scriptUrl = 'https://script.google.com/macros/s/AKfycbzT9_z2v02qAEMLzXsvvdelaRQGR2ZS5IpWqCCCB2N5_ih076Q7Eg7WBGukJ-3wXkBxRg/exec';
-
-  fetch(scriptUrl, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(formData)
-  })
-  .then(() => {
-    // Show success animation
-    document.getElementById('studyForm').style.display = 'none';
-    document.getElementById('successAnimation').style.display = 'block';
-
-    // Refresh dashboard data immediately
-    if (window.refreshDashboard) {
-      window.refreshDashboard();
-    }
-
-    // Reset form and close after animation
-    setTimeout(() => {
-      document.getElementById('studyForm').reset();
-      document.getElementById('studyForm').style.display = 'block';
-      document.getElementById('successAnimation').style.display = 'none';
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'সাবমিট করুন';
-      setDefaultDate();
-
-      // Close the popup
-      closeStudyForm();
-    }, 2000); // Reduced from 3000ms to 2000ms for faster close
-  })
-  .catch(error => {
-    console.error('Error:', error);
-    alert('সাবমিট করতে সমস্যা হয়েছে। দয়া করে আবার চেষ্টা করুন।');
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'সাবমিট করুন';
-  });
-});
-      // Format decimal numbers to 1 decimal place (আপনার কোডের অংশ)
-      function formatDecimal(num) {
-        return parseFloat(num).toFixed(1);
-      }
+      document.getElementById('studyForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'সাবমিট হচ্ছে...';
+        document.getElementById('successAnimation').style.display = 'none';
+        const timestamp = new Date().toISOString();
+        const formData = {
+          timestamp: timestamp,
+          name: document.getElementById('name').value,
+          date: document.getElementById('date').value,
+          hours: parseFloat(document.getElementById('hours').value),
+          goal: document.getElementById('goal').value
+        };
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycbzT9_z2v02qAEMLzXsvvdelaRQGR2ZS5IpWqCCCB2N5_ih076Q7Eg7WBGukJ-3wXkBxRg/exec';
+        fetch(scriptUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        })
+        .then(() => {
+          document.getElementById('studyForm').style.display = 'none';
+          document.getElementById('successAnimation').style.display = 'block';
+          if (window.refreshDashboard) window.refreshDashboard();
+          setTimeout(() => {
+            closeStudyForm(); 
+          }, 2000); 
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('সাবমিট করতে সমস্যা হয়েছে। দয়া করে আবার চেষ্টা করুন।');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'সাবমিট করুন';
+        });
+      });
+      function formatDecimal(num) { return parseFloat(num).toFixed(1); }
     </script>
 
-
-
-
-
-
-
  <script type="text/babel">
-// পুরানো ফাংশন সরিয়ে দিন (আপনার কোডের অংশ)
-// const parseLevelData = (levelStr) => {
-//   if (!levelStr) return { level: 1, progress: 0 };
-//
-//   const parts = levelStr.split(' - ');
-//   if (parts.length !== 2) return { level: 1, progress: 0 };
-//
-//   const level = parseInt(parts[0].replace('Level ', '')) || 1;
-//   const progress = parseInt(parts[1].replace('%', '')) || 0;
-//
-//   return { level, progress };
-// };
-
-// নতুন ফাংশন যেটা সরাসরি ম্যাসেজ রিটার্ন করবে (আপনার কোডের অংশ)
-const parseLevelData = (levelStr) => {
-  return levelStr || ""; // ডিফল্ট ভ্যালু হিসেবে খালি স্ট্রিং ভাল
-};
-
+const parseLevelData = (levelStr) => levelStr || ""; 
 const { useState, useEffect } = React;
 
 const StreakDashboard = () => {
   const [streakData, setStreakData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [refreshTrigger, setRefreshTrigger] = useState(false);
-
-  const googleSheetWebAppURL = "https://script.google.com/macros/s/AKfycbzT9_z2v02qAEMLzXsvvdelaRQGR2ZS5IpWqCCCB2N5_ih076Q7Eg7WBGukJ-3wXkBxRg/exec"; // আপনার Google Apps Script URL
+  const googleSheetWebAppURL = "https://script.google.com/macros/s/AKfycbzT9_z2v02qAEMLzXsvvdelaRQGR2ZS5IpWqCCCB2N5_ih076Q7Eg7WBGukJ-3wXkBxRg/exec";
 
   const fetchData = () => {
     setLoading(true);
     fetch(googleSheetWebAppURL)
       .then((res) => res.json())
       .then((data) => {
-        // Filter out rows where 'Name' is null, empty, or just whitespace
         const filteredData = data.filter(user => user.Name && user.Name.trim() !== "");
-        // Sort data by 'This Week Studied' descending
-        const sortedData = filteredData.sort((a, b) => (b["This Week Studied"] || 0) - (a["This Week Studied"] || 0)); // Ensure default to 0 for comparison
+        const sortedData = filteredData.sort((a, b) => (b["This Week Studied"] || 0) - (a["This Week Studied"] || 0)); 
         setStreakData(sortedData);
         setLoading(false);
       })
-      .catch((err) => {
-        console.error("Fetch error:", err);
-        setLoading(false);
-      });
+      .catch((err) => { console.error("Fetch error:", err); setLoading(false); });
   };
 
   useEffect(() => {
     fetchData();
-    // Expose refreshDashboard globally so the form can call it
-    window.refreshDashboard = () => {
-      setRefreshTrigger(prev => !prev);
-    };
-     // Cleanup function for the global function
-     return () => {
-         window.refreshDashboard = null;
-     };
+    window.refreshDashboard = () => setRefreshTrigger(prev => !prev);
+    return () => { window.refreshDashboard = null; };
   }, [refreshTrigger]);
 
-  const targetDate = new Date("2025-06-25"); // লক্ষ্য তারিখ ঠিক আছে
+  const targetDate = new Date("2025-06-25"); 
   const today = new Date();
-   // দিনের সংখ্যা গণনা (তারিখের পার্থক্য)
   const diffTime = targetDate.getTime() - today.getTime();
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  const daysLeft = Math.max(0, diffDays); // নেগেটিভ যেন না হয়
-
-  const motivation = "⚡ চলছে 100_HOURS চ্যালেঞ্জ! প্রতি শনি-শুক্র;";
+  const daysLeft = Math.max(0, diffDays); 
+  const motivation = "⚡ ৫ জুন বৃহস্পতিবারঃ বাংলা ২য় পত্র; সকাল ১০ টা ";
 
   return (
     <div className="max-w-7xl mx-auto space-y-8 pt-0">
@@ -1072,10 +603,7 @@ const StreakDashboard = () => {
         <p className="text-lg text-green-300">{motivation}</p>
       </div>
 
-      <button
-        onClick={openStudyForm}
-        className="form-button"
-      >
+      <button onClick={openStudyForm} className="form-button">
         <i className="fas fa-plus"></i> Add Your Progress
       </button>
 
@@ -1087,101 +615,40 @@ const StreakDashboard = () => {
       ) : (
         <div className="overflow-x-auto rounded-xl border border-green-800/50 shadow-lg mx-2 md:mx-4 bg-gradient-to-br from-green-950/80 to-green-900/30">
           <table className="min-w-full divide-y divide-green-800/50">
-         <thead className="bg-gradient-to-r from-green-900/80 to-green-800/80">
-  <tr>
-    <th scope="col" className="px-4 py-3 text-left text-xs font-semibold text-emerald-300 uppercase tracking-wider">
-      <i className="fas fa-trophy mr-1"></i>
-      <span>র‍্যাঙ্ক</span>
-    </th>
-    <th scope="col" className="px-4 py-3 text-left text-xs font-semibold text-emerald-300 uppercase tracking-wider">
-      <i className="fas fa-user mr-1"></i>
-      <span>নাম</span>
-    </th>
-    <th scope="col" className="px-4 py-3 text-left text-xs font-semibold text-emerald-300 uppercase tracking-wider">
-      <i className="fas fa-sun mr-1"></i>
-      <span>আজকে</span>
-    </th>
-    <th scope="col" className="px-4 py-3 text-left text-xs font-semibold text-emerald-300 uppercase tracking-wider">
-      <i className="fas fa-calendar-week mr-1"></i>
-      <span>সপ্তাহ</span>
-    </th>
-    <th scope="col" className="px-4 py-3 text-left text-xs font-semibold text-emerald-300 uppercase tracking-wider">
-      <i className="fas fa-chart-line mr-1"></i>
-      <span>লাস্ট উইক</span>
-    </th>
-  </tr>
-</thead>
-
-         <tbody className="divide-y divide-green-800/30">
-  {streakData.map((user, index) => (
-    <tr
-      key={index}
-      className={`hover:bg-green-900/20 transition-colors ${index % 2 === 0 ? 'bg-green-950/30' : 'bg-green-900/10'}`}
-      style={{ animationDelay: `${index * 0.05}s` }}
-    >
-      {/* Rank Column */}
-      <td className="px-4 py-4 whitespace-nowrap text-center">
-        <div className={`flex items-center justify-center ${index < 3 ? 'scale-110' : ''}`}>
-          <div className={`h-8 w-8 rounded-full flex items-center justify-center shadow-md
-            ${index === 0 ? 'bg-gradient-to-br from-yellow-400 to-yellow-600' :
-              index === 1 ? 'bg-gradient-to-br from-gray-300 to-gray-500' :
-              index === 2 ? 'bg-gradient-to-br from-amber-600 to-amber-800' :
-              'bg-gradient-to-br from-green-800 to-green-900'}`}>
-            <span className={`font-bold ${index < 3 ? 'text-black' : 'text-emerald-300'}`}>
-              {index + 1}
-            </span>
-          </div>
-        </div>
-      </td>
-
-      {/* Name Column - এখানে নাম, স্ট্রিক এবং ম্যাসেজ একসাথে দেখানো হচ্ছে */}
-      <td className="px-4 py-4">
-        {/* Removed the outer flex div and the avatar div */}
-        <div> {/* This div contains the name, streak, and message */}
-          <div className="flex items-baseline flex-wrap"> {/* flex-wrap added for small screens */}
-            <div className="text-sm font-medium text-green-100 mr-2 break-words">{user.Name}</div> {/* break-words added */}
-            {user.Streak > 0 && (
-              <div className="text-xs text-red-400 flex items-center whitespace-nowrap"> {/* whitespace-nowrap added */}
-                <i className="fas fa-fire mr-1"></i>
-                {user.Streak}d
-              </div>
-            )}
-          </div>
-          {parseLevelData(user.Levels) && (
-            <div className="text-xs text-blue-300 mt-1 flex items-center break-words"> {/* break-words added */}
-              <i className="fas fa-comment-dots mr-1"></i>
-              {parseLevelData(user.Levels)}
-            </div>
-          )}
-        </div>
-      </td>
-
-      {/* Today Studied */}
-      <td className="px-4 py-4 whitespace-nowrap">
-        <div className="flex items-center text-sm font-medium text-green-200">
-          <i className="fas fa-sun text-yellow-400 mr-2"></i>
-          {formatDecimal(user["Today Studied"] || 0)}h {/* Ensure 0 if null */}
-        </div>
-      </td>
-
-      {/* This Week Studied */}
-      <td className="px-4 py-4 whitespace-nowrap">
-        <div className="flex items-center text-sm font-semibold text-emerald-300">
-          <i className="fas fa-calendar-week text-blue-400 mr-2"></i>
-          {formatDecimal(user["This Week Studied"] || 0)}h {/* Ensure 0 if null */}
-        </div>
-      </td>
-
-      {/* Total Studied */}
-      <td className="px-4 py-4 whitespace-nowrap">
-        <div className="flex items-center text-sm text-green-200">
-          <i className="fas fa-chart-line text-purple-400 mr-2"></i>
-          {formatDecimal(user["Total Studied"] || 0)}h {/* Ensure 0 if null */}
-        </div>
-      </td>
-    </tr>
-  ))}
-</tbody>
+            <thead className="bg-gradient-to-r from-green-900/80 to-green-800/80">
+              <tr>
+                <th scope="col" className="px-4 py-3 text-left text-xs font-semibold text-emerald-300 uppercase tracking-wider"><i className="fas fa-trophy mr-1"></i><span>র‍্যাঙ্ক</span></th>
+                <th scope="col" className="px-4 py-3 text-left text-xs font-semibold text-emerald-300 uppercase tracking-wider"><i className="fas fa-user mr-1"></i><span>নাম</span></th>
+                <th scope="col" className="px-4 py-3 text-left text-xs font-semibold text-emerald-300 uppercase tracking-wider"><i className="fas fa-sun mr-1"></i><span>আজকে</span></th>
+                <th scope="col" className="px-4 py-3 text-left text-xs font-semibold text-emerald-300 uppercase tracking-wider"><i className="fas fa-calendar-week mr-1"></i><span>সপ্তাহ</span></th>
+                <th scope="col" className="px-4 py-3 text-left text-xs font-semibold text-emerald-300 uppercase tracking-wider"><i className="fas fa-chart-line mr-1"></i><span>লাস্ট উইক</span></th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-green-800/30">
+              {streakData.map((user, index) => (
+                <tr key={index} className={`hover:bg-green-900/20 transition-colors ${index % 2 === 0 ? 'bg-green-950/30' : 'bg-green-900/10'}`} style={{ animationDelay: `${index * 0.05}s` }}>
+                  <td className="px-4 py-4 whitespace-nowrap text-center">
+                    <div className={`flex items-center justify-center ${index < 3 ? 'scale-110' : ''}`}>
+                      <div className={`h-8 w-8 rounded-full flex items-center justify-center shadow-md ${index === 0 ? 'bg-gradient-to-br from-yellow-400 to-yellow-600' : index === 1 ? 'bg-gradient-to-br from-gray-300 to-gray-500' : index === 2 ? 'bg-gradient-to-br from-amber-600 to-amber-800' : 'bg-gradient-to-br from-green-800 to-green-900'}`}>
+                        <span className={`font-bold ${index < 3 ? 'text-black' : 'text-emerald-300'}`}>{index + 1}</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-4 py-4">
+                    <div> 
+                      <div className="flex items-baseline flex-wrap"> 
+                        <div className="text-sm font-medium text-green-100 mr-2 break-words">{user.Name}</div> 
+                        {user.Streak > 0 && (<div className="text-xs text-red-400 flex items-center whitespace-nowrap"><i className="fas fa-fire mr-1"></i>{user.Streak}d</div>)}
+                      </div>
+                      {parseLevelData(user.Levels) && (<div className="text-xs text-blue-300 mt-1 flex items-center break-words"><i className="fas fa-comment-dots mr-1"></i>{parseLevelData(user.Levels)}</div>)}
+                    </div>
+                  </td>
+                  <td className="px-4 py-4 whitespace-nowrap"><div className="flex items-center text-sm font-medium text-green-200"><i className="fas fa-sun text-yellow-400 mr-2"></i>{formatDecimal(user["Today Studied"] || 0)}h</div></td>
+                  <td className="px-4 py-4 whitespace-nowrap"><div className="flex items-center text-sm font-semibold text-emerald-300"><i className="fas fa-calendar-week text-blue-400 mr-2"></i>{formatDecimal(user["This Week Studied"] || 0)}h</div></td>
+                  <td className="px-4 py-4 whitespace-nowrap"><div className="flex items-center text-sm text-green-200"><i className="fas fa-chart-line text-purple-400 mr-2"></i>{formatDecimal(user["Total Studied"] || 0)}h</div></td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
       )}
@@ -1189,36 +656,19 @@ const StreakDashboard = () => {
       <div className="mt-12 bg-green-950 border-t border-green-800 p-6 rounded-2xl text-sm text-green-200">
         <h2 className="text-xl font-bold text-white mb-4">📒 ইউজার গাইড</h2>
         <ol className="space-y-3 list-decimal pl-5">
-          <li>
-            <strong>ড্যাশবোর্ড দেখো:</strong> Streak; Today, This Week, Total Studied সহ নিজেকে ট্র্যাক করার সেরা উপায়!
-          </li>
-          <li>
-            <strong>র‍্যাংক:</strong> প্রতি সপ্তাহে ঠিক শনিবার সকাল ৫ টায় র‍্যাংক রিসেট হবে।
-          </li>
-          <li>
-            <strong>এডমিন ম্যাসেজ:</strong> এটা সারপ্রাইজ, মাঝে মাঝেই নিউ ম্যাসেজ পাবে।
-          </li>
-          <li>
-            <strong>প্রোগ্রেস যুক্ত করো:</strong> "Add Your Progress" বাটনে ক্লিক করে ফর্ম পূরণ করো (নাম, ঘণ্টা, ইত্যাদি)। সাবমিট করলেই ড্যাশবোর্ড আপডেট হবে।
-          </li>
-          <li>
-            <strong>ম্যাসেজ ফর এডমিন:</strong> চাইলে যে কিছু এডমিনকে জানাতে ফর্মের এই অপশন বেবহার করতে পারো এটা অপশনাল। চাইলে মোটিভেশনও দিতে পারো (অগ্রিম থ্যাংকস)।
-          </li>
+          <li><strong>ড্যাশবোর্ড দেখো:</strong> Streak; Today, This Week, Total Studied সহ নিজেকে ট্র্যাক করার সেরা উপায়!</li>
+          <li><strong>র‍্যাংক:</strong> প্রতি সপ্তাহে ঠিক শনিবার সকাল ৫ টায় র‍্যাংক রিসেট হবে।</li>
+          <li><strong>এডমিন ম্যাসেজ:</strong> এটা সারপ্রাইজ, মাঝে মাঝেই নিউ ম্যাসেজ পাবে।</li>
+          <li><strong>প্রোগ্রেস যুক্ত করো:</strong> "Add Your Progress" বাটনে ক্লিক করে ফর্ম পূরণ করো (নাম, ঘণ্টা, ইত্যাদি)। সাবমিট করলেই ড্যাশবোর্ড আপডেট হবে।</li>
+          <li><strong>ম্যাসেজ ফর এডমিন:</strong> চাইলে যে কিছু এডমিনকে জানাতে ফর্মের এই অপশন বেবহার করতে পারো এটা অপশনাল। চাইলে মোটিভেশনও দিতে পারো (অগ্রিম থ্যাংকস)।</li>
+          <li><strong>নোট ও সাজেশন:</strong> পেইজের উপরের দিকে "গুরুত্বপূর্ণ নোট ও সাজেশন" ব্যানারে ক্লিক করে প্রয়োজনীয় নোট এবং সাজেশন ডাউনলোড করতে পারবে।</li>
         </ol>
-
-        <p className="mt-6 text-green-400 italic text-center">
-          🌙 "তোমার প্রতিপালক তোমাকে পরিত্যাগ করেননি এবং তোমার প্রতি নারাজও হননি। নিশ্চয়ই পরবর্তী সময় তোমার পক্ষে পূর্বের সময় অপেক্ষা শ্রেয়। অচিরেই তোমার প্রতিপালক তোমাকে এত দেবেন যে, তুমি খুশী হয়ে যাবে"
-                                    — (সুরা: আদ্ব-দ্বোহা, আয়াত: ৩-৫)
-        </p>
+        <p className="mt-6 text-green-400 italic text-center">🌙 "তোমার প্রতিপালক তোমাকে পরিত্যাগ করেননি এবং তোমার প্রতি নারাজও হননি। নিশ্চয়ই পরবর্তী সময় তোমার পক্ষে পূর্বের সময় অপেক্ষা শ্রেয়। অচিরেই তোমার প্রতিপালক তোমাকে এত দেবেন যে, তুমি খুশী হয়ে যাবে" — (সুরা: আদ্ব-দ্বোহা, আয়াত: ৩-৫)</p>
       </div>
-
-      <footer className="text-center text-sm text-green-300 pt-6">
-        🏁 Happy Overclocking | Designed by <span className="font-semibold text-white">Overclock Team</span>
-      </footer>
+      <footer className="text-center text-sm text-green-300 pt-6">🏁 Happy Overclocking | Designed by <span className="font-semibold text-white">Overclock Team</span></footer>
     </div>
   );
 };
-
 ReactDOM.render(<StreakDashboard />, document.getElementById("root"));
 </script>
 
