@@ -1001,24 +1001,41 @@ document.getElementById('studyForm').addEventListener('submit', function(e) {
     <!-- ------ Download Suggestions Logic Start ------ -->
     <script>
         const downloadableNotes = [
-           // *** আপনার ফাইলের আসল নাম এখানে দিন, URL এনকোডিং JavaScript করবে ***
-        { title: "বাংলা ২য় পত্র (তানভীর ভাইয়া) ", fileName: "বাংলা কারেন্ট সাজেশন (তানভীর ভাইয়া).pdf", type: "সাজেশন" },
-        { title: "ইংরেজি ফাইনাল (মানিক ভাইয়া) ", fileName: "ইংরেজি কারেন্ট সাজেশন (মানিক ভাইয়া).pdf", type: "সাজেশন" },
-        { title: "পদার্থবিজ্ঞান ১ম পত্র ফাইনাল (POS) ", fileName: "Physics 1st Paper Suggestion (POS).pdf", type: "সাজেশন" },
-        { title: "পদার্থবিজ্ঞান ১ম পত্র ফাইনাল (BOB) ", fileName: "BOB Physics 1st Paper Suggestion.pdf", type: "সাজেশন" },
+            // *** এখানে আপনার ফাইল যোগ করুন ***
+            // ফরম্যাট: { title: "ফাইলের নাম", fileName: "pdf_file_name.pdf", type: "সাজেশন/নোট", subject: "বিষয়" }
+            
+            // বাংলা
+            { title: "বাংলা ২য় পত্র (তানভীর ভাইয়া)", fileName: "বাংলা কারেন্ট সাজেশন (তানভীর ভাইয়া).pdf", type: "সাজেশন", subject: "বাংলা" },
+            { title: "বাংলা ১ম পত্র নোট (উদাহরণ)", fileName: "bangla_1st_paper.pdf", type: "নোট", subject: "বাংলা" },
+            
+            // ইংরেজি
+            { title: "ইংরেজি ফাইনাল (মানিক ভাইয়া)", fileName: "ইংরেজি কারেন্ট সাজেশন (মানিক ভাইয়া).pdf", type: "সাজেশন", subject: "ইংরেজি" },
+            
+            // পদার্থবিজ্ঞান
+            { title: "পদার্থবিজ্ঞান ১ম পত্র ফাইনাল (POS)", fileName: "Physics 1st Paper Suggestion (POS).pdf", type: "সাজেশন", subject: "পদার্থবিজ্ঞান" },
+            { title: "পদার্থবিজ্ঞান ১ম পত্র ফাইনাল (BOB)", fileName: "BOB Physics 1st Paper Suggestion.pdf", type: "সাজেশন", subject: "পদার্থবিজ্ঞান" },
+            { title: "পদার্থবিজ্ঞান ২য় পত্র ফাইনাল (BOB)", fileName: "BOB_PHYSICS 2ND PAPER SUGGESTIONS.pdf", type: "সাজেশন", subject: "পদার্থবিজ্ঞান" },
 
+            
+            // রসায়ন (উদাহরণ)
+           // { title: "রসায়ন জৈবযৌগ নোট", fileName: "chemistry_organic.pdf", type: "নোট", subject: "রসায়ন" },
+            
+            // জীববিজ্ঞান (উদাহরণ)
+            //{ title: "জীববিজ্ঞান নমুনা প্রশ্ন", fileName: "biology_sample_q.pdf", type: "প্রশ্ন", subject: "জীববিজ্ঞান" },
+            
+            // উচ্চতর গণিত (উদাহরণ)
+           // { title: "উচ্চতর গণিত সূত্রাবলী", fileName: "higher_math_formulas.pdf", type: "নোট", subject: "উচ্চতর গণিত" },
 
-        // example: { title: "নতুন নোটের নাম", fileName: "new_note.pdf", type: "নোট" },
-
+            // আইসিটি (উদাহরণ)
+            //{ title: "আইসিটি চ্যাপ্টার ৩ নোট", fileName: "ict_chapter_3.pdf", type: "নোট", subject: "আইসিটি" },
         ];
+
         const notesFolderPath = ''; // রুট ডিরেক্টরি থেকে ফাইল লোড করার জন্য খালি রাখুন
 
         function renderNotesList() {
             const listContainer = document.getElementById('downloadSuggestionsList');
-            if (!listContainer) {
-                // console.error("Download suggestions list container not found.");
-                return;
-            }
+            if (!listContainer) return;
+            
             listContainer.innerHTML = ''; // আগের আইটেমগুলো মুছে ফেলুন
 
             if (downloadableNotes.length === 0) {
@@ -1029,28 +1046,68 @@ document.getElementById('studyForm').addEventListener('submit', function(e) {
                 return;
             }
 
-            downloadableNotes.forEach(note => {
-                const noteItem = document.createElement('div');
-                noteItem.className = 'bg-black/30 backdrop-blur-sm rounded-md border border-green-700/30 p-3 mb-2 flex justify-between items-center transition-all duration-300 hover:border-emerald-500/70 hover:bg-black/40';
+            // বিষয় অনুযায়ী নোটগুলো গ্রুপ করা
+            const groupedNotes = downloadableNotes.reduce((acc, note) => {
+                const subject = note.subject || "অন্যান্য";
+                if (!acc[subject]) {
+                    acc[subject] = [];
+                }
+                acc[subject].push(note);
+                return acc;
+            }, {});
+            
+            // প্রতিটি বিষয়ের জন্য আলাদা ড্রপডাউন তৈরি করা
+            const subjectOrder = ["বাংলা", "ইংরেজি", "আইসিটি", "পদার্থবিজ্ঞান", "রসায়ন", "জীববিজ্ঞান", "উচ্চতর গণিত", "অন্যান্য"];
+            
+            subjectOrder.forEach(subject => {
+                if (groupedNotes[subject]) {
+                    const notesInSubject = groupedNotes[subject];
 
-                let typeBadgeColor = 'bg-sky-500'; // Default for 'নোট'
-                if (note.type === 'সাজেশন') typeBadgeColor = 'bg-yellow-500';
-                else if (note.type === 'সমাধান') typeBadgeColor = 'bg-purple-500';
+                    const subjectContainer = document.createElement('div');
+                    subjectContainer.className = 'bg-black/30 backdrop-blur-sm rounded-md border border-green-700/30 mb-2 transition-all duration-300 hover:border-emerald-500/70';
 
-                // URL এনকোডিং করা হচ্ছে ফাইলের নামের জন্য href এ
-                const encodedFileName = encodeURIComponent(note.fileName);
+                    const subjectHeader = document.createElement('div');
+                    subjectHeader.className = 'p-3 flex justify-between items-center cursor-pointer';
+                    subjectHeader.innerHTML = `
+                        <h5 class="text-base font-semibold text-emerald-200">${subject}</h5>
+                        <i class="fas fa-chevron-down text-emerald-300 transition-transform duration-300"></i>
+                    `;
 
-                noteItem.innerHTML = `
-                    <div class="flex-grow mr-3">
-                        <span class="text-sm font-medium text-emerald-100">${note.title}</span>
-                        <span class="ml-2 text-xs text-white px-1.5 py-0.5 rounded ${typeBadgeColor}">${note.type}</span>
-                    </div>
-                    <a href="${notesFolderPath}${encodedFileName}" download="${note.fileName}"
-                       class="flex-shrink-0 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold py-1.5 px-3 rounded-md transition-colors duration-300 flex items-center">
-                        <i class="fas fa-download mr-1.5"></i> ডাউনলোড
-                    </a>
-                `;
-                listContainer.appendChild(noteItem);
+                    const filesList = document.createElement('div');
+                    filesList.className = 'px-3 pb-3 mt-2 border-t border-emerald-600/30 hidden space-y-2';
+
+                    notesInSubject.forEach(note => {
+                        const noteItem = document.createElement('div');
+                        noteItem.className = 'flex justify-between items-center';
+
+                        let typeBadgeColor = 'bg-sky-500';
+                        if (note.type === 'সাজেশন') typeBadgeColor = 'bg-yellow-500 text-black';
+                        else if (note.type === 'প্রশ্ন') typeBadgeColor = 'bg-purple-500';
+
+                        const encodedFileName = encodeURIComponent(note.fileName);
+
+                        noteItem.innerHTML = `
+                            <div class="flex-grow mr-3">
+                                <span class="text-sm font-medium text-emerald-100">${note.title}</span>
+                                <span class="ml-2 text-xs font-bold px-1.5 py-0.5 rounded ${typeBadgeColor}">${note.type}</span>
+                            </div>
+                            <a href="${notesFolderPath}${encodedFileName}" download="${note.fileName}"
+                               class="flex-shrink-0 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold py-1.5 px-3 rounded-md transition-colors duration-300 flex items-center">
+                                <i class="fas fa-download mr-1.5"></i> ডাউনলোড
+                            </a>
+                        `;
+                        filesList.appendChild(noteItem);
+                    });
+                    
+                    subjectHeader.addEventListener('click', () => {
+                        filesList.classList.toggle('hidden');
+                        subjectHeader.querySelector('i').classList.toggle('rotate-180');
+                    });
+
+                    subjectContainer.appendChild(subjectHeader);
+                    subjectContainer.appendChild(filesList);
+                    listContainer.appendChild(subjectContainer);
+                }
             });
         }
 
@@ -1066,8 +1123,6 @@ document.getElementById('studyForm').addEventListener('submit', function(e) {
                     const isHidden = listContainer.classList.toggle('hidden');
                     toggleIcon.classList.toggle('rotate-180', !isHidden);
                 });
-            } else {
-                // console.error("One or more elements for download suggestions banner not found.");
             }
         });
     </script>
