@@ -999,59 +999,59 @@ document.getElementById('studyForm').addEventListener('submit', function(e) {
     </script>
 
 
-    <!-- ------ Download Suggestions Logic Start (চূড়ান্ত সংশোধিত) ------ -->
+    <!-- ------ Download Suggestions Logic Start (meww) (চূড়ান্ত সংশোধিত এবং পরিষ্কার) ------ -->
     <script>
         const downloadableNotes = [
             // *** এখানে আপনার ফাইল যোগ করুন ***
             // ফরম্যাট: { title: "ফাইলের নাম", driveId: "আপনার গুগল ড্রাইভ ফাইল আইডি", type: "সাজেশন/নোট", subject: "বিষয়" }
             
             // বাংলা
-           { title: "বাংলা ১ম ও ২য় পত্র (টার্গেট সিরিজ)", driveId: "1DSwmhTc9Rqr9uyAsFcWWtUJtpjr6GLz2", type: "সাজেশন", subject: "বাংলা" },
-           { title: "বাংলা ২য় পত্র যা কিছু দরকার (ব্যাকরণ অংশ)", driveId: "123ZRwmOhsDfUYt3C1y8HJzTBnim6uB1W", type: "নোট", subject: "বাংলা" },
-           // { title: "বাংলা ২য় পত্র (তানভীর ভাইয়া)", driveId: "YOUR_DRIVE_ID_HERE", type: "সাজেশন", subject: "বাংলা" },
+            { title: "বাংলা ১ম ও ২য় পত্র (টার্গেট সিরিজ)", driveId: "1DSwmhTc9Rqr9uyAsFcWWtUJtpjr6GLz2", type: "সাজেশন", subject: "বাংলা" },
+            { title: "বাংলা ২য় পত্র যা কিছু দরকার (ব্যাকরণ অংশ)", driveId: "123ZRwmOhsDfUYt3C1y8HJzTBnim6uB1W", type: "নোট", subject: "বাংলা" },
+            // { title: "বাংলা ২য় পত্র (তানভীর ভাইয়া)", driveId: "YOUR_DRIVE_ID_HERE", type: "সাজেশন", subject: "বাংলা" },
             
             // ইংরেজি
-           { title: "ইংরেজি ১ম ও ২য় পত্র (টার্গেট সিরিজ)", driveId: "1IyEJFuDD4YdPS3qYZCxEvdl4xU6qYBrx", type: "সাজেশন", subject: "ইংরেজি" },
-           { title: "Sure 60 ইংরেজি ১ম পত্র (ইংলিশ মজা)", driveId: "1BSuDkEd_7YxRpYC5u2O7rOQeXSKu9uDK", type: "সাজেশন", subject: "ইংরেজি" },
-
-         //   { title: "ইংরেজি ফাইনাল (মানিক ভাইয়া)", driveId: "YOUR_DRIVE_ID_HERE", type: "সাজেশন", subject: "ইংরেজি" },
+            { title: "ইংরেজি ১ম ও ২য় পত্র (টার্গেট সিরিজ)", driveId: "1IyEJFuDD4YdPS3qYZCxEvdl4xU6qYBrx", type: "সাজেশন", subject: "ইংরেজি" },
+            { title: "Sure 60 ইংরেজি ১ম পত্র (ইংলিশ মজা)", driveId: "1BSuDkEd_7YxRpYC5u2O7rOQeXSKu9uDK", type: "সাজেশন", subject: "ইংরেজি" },
+            // { title: "ইংরেজি ফাইনাল (মানিক ভাইয়া)", driveId: "YOUR_DRIVE_ID_HERE", type: "সাজেশন", subject: "ইংরেজি" },
             
             // পদার্থবিজ্ঞান
             { title: "পদার্থবিজ্ঞান ১ম ও ২য় পত্র (টার্গেট সিরিজ)", driveId: "1Ot1ClvOHiHkbJy1nMemLqoxfTL1bXq2r", type: "সাজেশন", subject: "পদার্থবিজ্ঞান" },
-            { title: "বিজ্ঞানক্লাস পদার্থবিজ্ঞান ১ম পত্র (সম্পুর্ন)", fileName: "বিজ্ঞানক্লাস পদার্থবিজ্ঞান ১ম পত্র (সম্পুর্ন).pdf", driveId: "11orpreNuvoRb9Q23rlTbaCF624jOqM8r", type: "সাজেশন", subject: "পদার্থবিজ্ঞান" },
-            { title: "বিজ্ঞানক্লাস পদার্থবিজ্ঞান ২য় পত্র (সম্পুর্ন)", fileName: "বিজ্ঞানক্লাস পদার্থবিজ্ঞান ২য় পত্র (সম্পুর্ন).pdf", driveId: "1qhIaX-0a_Q1N7UhkGT0PL5bmvFqYQ_bJ", type: "সাজেশন", subject: "পদার্থবিজ্ঞান" },
+            { title: "বিজ্ঞানক্লাস পদার্থবিজ্ঞান ১ম পত্র (সম্পুর্ন)", driveId: "11orpreNuvoRb9Q23rlTbaCF624jOqM8r", type: "সাজেশন", subject: "পদার্থবিজ্ঞান" },
+            { title: "বিজ্ঞানক্লাস পদার্থবিজ্ঞান ২য় পত্র (সম্পুর্ন)", driveId: "1qhIaX-0a_Q1N7UhkGT0PL5bmvFqYQ_bJ", type: "সাজেশন", subject: "পদার্থবিজ্ঞান" },
             { title: "পদার্থবিজ্ঞান ১ম পত্র (POS)", driveId: "1P4e5J3d4WK3QkaVrBWNvy7lfaWVSdJ3_", type: "সাজেশন", subject: "পদার্থবিজ্ঞান" },
-            //  { title: "পদার্থবিজ্ঞান ১ম পত্র (BOB)", driveId: "YOUR_DRIVE_ID_HERE", type: "সাজেশন", subject: "পদার্থবিজ্ঞান" },
-           //   { title: "পদার্থবিজ্ঞান ২য় পত্র (BOB)", driveId: "YOUR_DRIVE_ID_HERE", type: "সাজেশন", subject: "পদার্থবিজ্ঞান" },
-            //  { title: "পদার্থবিজ্ঞান ১ম পত্র ক,খ (BOB)", driveId: "YOUR_DRIVE_ID_HERE", type: "নোট", subject: "পদার্থবিজ্ঞান" },
-          //    { title: "পদার্থবিজ্ঞান ২য় পত্র ক,খ (BOB)", driveId: "YOUR_DRIVE_ID_HERE", type: "নোট", subject: "পদার্থবিজ্ঞান" },
-            //  { title: "পদার্থবিজ্ঞান ১ম পত্র (10MS)", driveId: "YOUR_DRIVE_ID_HERE", type: "সাজেশন", subject: "পদার্থবিজ্ঞান" },
-            //  { title: "পদার্থবিজ্ঞান ২য় পত্র (10MS)", driveId: "YOUR_DRIVE_ID_HERE", type: "সাজেশন", subject: "পদার্থবিজ্ঞান" },
-           //   { title: "পদার্থবিজ্ঞান ১ম পত্র (UTKORSHO)", driveId: "YOUR_DRIVE_ID_HERE", type: "নোট", subject: "পদার্থবিজ্ঞান" },
-           //   { title: "পদার্থবিজ্ঞান ২য় পত্র (UTKORSHO)", driveId: "YOUR_DRIVE_ID_HERE", type: "নোট", subject: "পদার্থবিজ্ঞান" },
-           //   { title: "পদার্থবিজ্ঞান এমসিকিউ (সম্পুর্ন এডিঃ২০২৪)", driveId: "YOUR_DRIVE_ID_HERE", type: "নোট", subject: "পদার্থবিজ্ঞান" },
+            // { title: "পদার্থবিজ্ঞান ১ম পত্র (BOB)", driveId: "YOUR_DRIVE_ID_HERE", type: "সাজেশন", subject: "পদার্থবিজ্ঞান" },
+            // { title: "পদার্থবিজ্ঞান ২য় পত্র (BOB)", driveId: "YOUR_DRIVE_ID_HERE", type: "সাজেশন", subject: "পদার্থবিজ্ঞান" },
+            // { title: "পদার্থবিজ্ঞান ১ম পত্র ক,খ (BOB)", driveId: "YOUR_DRIVE_ID_HERE", type: "নোট", subject: "পদার্থবিজ্ঞান" },
+            // { title: "পদার্থবিজ্ঞান ২য় পত্র ক,খ (BOB)", driveId: "YOUR_DRIVE_ID_HERE", type: "নোট", subject: "পদার্থবিজ্ঞান" },
+            // { title: "পদার্থবিজ্ঞান ১ম পত্র (10MS)", driveId: "YOUR_DRIVE_ID_HERE", type: "সাজেশন", subject: "পদার্থবিজ্ঞান" },
+            // { title: "পদার্থবিজ্ঞান ২য় পত্র (10MS)", driveId: "YOUR_DRIVE_ID_HERE", type: "সাজেশন", subject: "পদার্থবিজ্ঞান" },
+            // { title: "পদার্থবিজ্ঞান ১ম পত্র (UTKORSHO)", driveId: "YOUR_DRIVE_ID_HERE", type: "নোট", subject: "পদার্থবিজ্ঞান" },
+            // { title: "পদার্থবিজ্ঞান ২য় পত্র (UTKORSHO)", driveId: "YOUR_DRIVE_ID_HERE", type: "নোট", subject: "পদার্থবিজ্ঞান" },
+            // { title: "পদার্থবিজ্ঞান এমসিকিউ (সম্পুর্ন এডিঃ২০২৪)", driveId: "YOUR_DRIVE_ID_HERE", type: "নোট", subject: "পদার্থবিজ্ঞান" },
 
             // রসায়ন
             { title: "রসায়ন ১ম ও ২য় পত্র (টার্গেট সিরিজ)", driveId: "1qT1Cv2vpHFDWGIq5UXFz6jZ9LjAVFO0r", type: "সাজেশন", subject: "রসায়ন" },
-            { title: "বিজ্ঞানক্লাস রসায়ন ১ম পত্র (সম্পুর্ন)", fileName: "বিজ্ঞানক্লাস রসায়ন ১ম পত্র (সম্পুর্ন).pdf", driveId: "1sHBmjZPa9K7E7qAtJg-44_3CnIXBbwiy", type: "সাজেশন", subject: "রসায়ন" },
-            { title: "বিজ্ঞানক্লাস রসায়ন ২য় পত্র (সম্পুর্ন)", fileName: "বিজ্ঞানক্লাস রসায়ন ২য় পত্র (সম্পুর্ন).pdf", driveId: "10sRGNmm7FjdH_OmVsoT44K_ko8b3MTbr", type: "সাজেশন", subject: "রসায়ন" },
+            { title: "বিজ্ঞানক্লাস রসায়ন ১ম পত্র (সম্পুর্ন)", driveId: "1sHBmjZPa9K7E7qAtJg-44_3CnIXBbwiy", type: "সাজেশন", subject: "রসায়ন" },
+            { title: "বিজ্ঞানক্লাস রসায়ন ২য় পত্র (সম্পুর্ন)", driveId: "10sRGNmm7FjdH_OmVsoT44K_ko8b3MTbr", type: "সাজেশন", subject: "রসায়ন" },
             
             // জীববিজ্ঞান 
             { title: "জীববিজ্ঞান ১ম ও ২য় পত্র (টার্গেট সিরিজ)", driveId: "1-iXpJWMCJRBoqvRUIDCLvkJGCmkX7mJ5", type: "সাজেশন", subject: "জীববিজ্ঞান" },
-            { title: "বিজ্ঞানক্লাস জীববিজ্ঞান ১ম পত্র (সম্পুর্ন)", fileName: "বিজ্ঞানক্লাস জীববিজ্ঞান ১ম পত্র (সম্পুর্ন).pdf", driveId: "1sDmMLCTdD_ve4SZVEM51PhHjvGdWeidF", type: "সাজেশন", subject: "জীববিজ্ঞান" },
-            { title: "বিজ্ঞানক্লাস জীববিজ্ঞান ২য় পত্র (সম্পুর্ন)", fileName: "বিজ্ঞানক্লাস জীববিজ্ঞান ২য় পত্র (সম্পুর্ন).pdf", driveId: "1ZvlNR1k2ga6Av70VOrrT9m5IouY2FHuD", type: "সাজেশন", subject: "জীববিজ্ঞান" },
-            { title: "বোটানি হট টপিকস (RTDS)", fileName: "বোটানি হট টপিকস.pdf", driveId: "1OAtmcV7ltYhOQZndHbFbMg1MrMO5s-XM", type: "সাজেশন", subject: "জীববিজ্ঞান" },
-            { title: "জুলোজি হট টপিকস (RTDS)", fileName: "জুলোজি হট টপিকস.pdf", driveId: "1QA-mG0GLfidz4okH3j9tdbZH5rlUUL1J", type: "সাজেশন", subject: "জীববিজ্ঞান" },
-
+            { title: "বিজ্ঞানক্লাস জীববিজ্ঞান ১ম পত্র (সম্পুর্ন)", driveId: "1sDmMLCTdD_ve4SZVEM51PhHjvGdWeidF", type: "সাজেশন", subject: "জীববিজ্ঞান" },
+            { title: "বিজ্ঞানক্লাস জীববিজ্ঞান ২য় পত্র (সম্পুর্ন)", driveId: "1ZvlNR1k2ga6Av70VOrrT9m5IouY2FHuD", type: "সাজেশন", subject: "জীববিজ্ঞান" },
+            { title: "বোটানি হট টপিকস (RTDS)", driveId: "1OAtmcV7ltYhOQZndHbFbMg1MrMO5s-XM", type: "সাজেশন", subject: "জীববিজ্ঞান" },
+            { title: "জুলোজি হট টপিকস (RTDS)", driveId: "1QA-mG0GLfidz4okH3j9tdbZH5rlUUL1J", type: "সাজেশন", subject: "জীববিজ্ঞান" },
+            { title: "পাওয়াপ্লে বোটানি মাস্টার বুক (BP)", driveId: "13qD1bm7cgnh427yi2AJUL_iF4128q2Gd", type: "নোট", subject: "জীববিজ্ঞান" },
+            { title: "পাওয়ারপ্লে জুলোজি মাস্টার বুক (BP)", driveId: "1QA-mG0GLfidz4okH3j9tdbZH5rlUUL1J", type: "নোট", subject: "জীববিজ্ঞান" },
    
             // উচ্চতর গণিত 
             { title: "উচ্চতর গণিত ১ম ও ২য় পত্র (টার্গেট সিরিজ)", driveId: "1Cns-ijYHK9Bco5K5KwCUzUmKOHJ55xP6", type: "সাজেশন", subject: "উচ্চতর গণিত" },
-            { title: "বিজ্ঞানক্লাস উচ্চতর গণিত ১ম পত্র (সম্পুর্ন)", fileName: "বিজ্ঞানক্লাস উচ্চতর গণিত ১ম পত্র (সম্পুর্ন).pdf", driveId: "1qn-asMxZNRSkANdN1NrAv8ooIQ9jXOWJ", type: "সাজেশন", subject: "উচ্চতর গণিত" },
-            { title: "বিজ্ঞানক্লাস উচ্চতর গণিত ২য় পত্র (সম্পুর্ন)", fileName: "বিজ্ঞানক্লাস উচ্চতর গণিত ২য় পত্র (সম্পুর্ন).pdf", driveId: "1kT-hqqQJuti67lCRxyBDE6U-UitncPgZ", type: "সাজেশন", subject: "উচ্চতর গণিত" },
+            { title: "বিজ্ঞানক্লাস উচ্চতর গণিত ১ম পত্র (সম্পুর্ন)", driveId: "1qn-asMxZNRSkANdN1NrAv8ooIQ9jXOWJ", type: "সাজেশন", subject: "উচ্চতর গণিত" },
+            { title: "বিজ্ঞানক্লাস উচ্চতর গণিত ২য় পত্র (সম্পুর্ন)", driveId: "1kT-hqqQJuti67lCRxyBDE6U-UitncPgZ", type: "সাজেশন", subject: "উচ্চতর গণিত" },
             
             // আইসিটি
             { title: "আইসিটি ১ম ও ২য় পত্র (টার্গেট সিরিজ)", driveId: "1eHWaLQSPXhyJKKb_yGRfK0lWFr3mbo7D", type: "সাজেশন", subject: "আইসিটি" },
-           // { title: "আইসিটি ফাইনাল (মানিক ভাইয়া)", driveId: "YOUR_DRIVE_ID_HERE", type: "সাজেশন", subject: "ইংরেজি" },
+            // { title: "আইসিটি ফাইনাল (মানিক ভাইয়া)", driveId: "YOUR_DRIVE_ID_HERE", type: "সাজেশন", subject: "আইসিটি" }, // বিষয় ঠিক করা হয়েছে
 
             // অন্যান্য
            { title: "বিজ্ঞানক্লাস সাজেশন পার্ট (সম্পুর্ন)", driveId: "1_DOKy391AkHDnA_6ntrhpBk2nNoGTo7g", type: "সাজেশন", subject: "অন্যান্য" },
@@ -1107,9 +1107,8 @@ document.getElementById('studyForm').addEventListener('submit', function(e) {
                         let typeBadgeColor = 'bg-sky-500';
                         if (note.type === 'সাজেশন') typeBadgeColor = 'bg-yellow-500 text-black';
                         else if (note.type === 'প্রশ্ন') typeBadgeColor = 'bg-purple-500';
+                        else if (note.type === 'নোট') typeBadgeColor = 'bg-blue-500'; // নোটের জন্য একটি আলাদা রঙ যোগ করা হলো
 
-                        // --- এখানে পরিবর্তন করা হয়েছে ---
-                        // গুগল ড্রাইভ ফাইল প্রিভিউ লিংক তৈরি
                         const driveLink = `https://drive.google.com/file/d/${note.driveId}/view`;
                         
                         noteItem.innerHTML = `
@@ -1123,7 +1122,6 @@ document.getElementById('studyForm').addEventListener('submit', function(e) {
                                 <i class="fas fa-cloud-download-alt mr-1.5"></i> ডাউনলোড
                             </a>
                         `;
-                        // --- পরিবর্তন শেষ ---
 
                         filesList.appendChild(noteItem);
                     });
